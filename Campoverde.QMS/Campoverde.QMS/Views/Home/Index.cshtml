@@ -2,10 +2,58 @@
     ViewData["Title"] = "Home Page";
 }
 <style>
-    .font-catamaran {
+    .font-catamaran-16 {
         font-family: catamaran;
         font-size: 16px;
         font-weight: 500
+    }
+
+    .font-catamaran-20 {
+        font-family: catamaran;
+        font-size: 20px;
+        font-weight: 700
+    }
+
+    .font-catamaran-20-1 {
+        font-family: catamaran;
+        font-size: 20px;
+        font-weight: 400
+    }
+
+    .font-catamaran-40 {
+        font-family: catamaran;
+        font-size: 40px;
+        font-weight: 700
+    }
+
+    .font-catamaran-64 {
+        font-family: catamaran;
+        font-size: 64px;
+        font-weight: 800
+    }
+
+    .font-catamaran-14 {
+        font-family: catamaran;
+        font-size: 14px;
+        font-weight: 400
+    }
+
+    .font-catamaran-13 {
+        font-family: catamaran;
+        font-size: 13px;
+        font-weight: 500
+    }
+
+    .bg-new-color {
+        background-color: rgba(217,217,217,.43);
+    }
+
+    .bg-new-color-1 {
+        background-color: rgba(217,217,217,1);
+    }
+
+    .bg-new-color-2 {
+        background-color: rgba(238,238,238,1);
     }
 </style>
 <div class="text-center">
@@ -17,135 +65,58 @@
 <hr />
 <div class="row">
     <div class="col col-sm-8 mb-3 mb-sm-0">
-        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4" style="background-color:rgba(217,217,217,.43);">
+        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4 bg-new-color">
             <div class="card-body ">
-                <h5 class="card-title text-center">Personal Information</h5>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label font-catamaran">First Name</label>
-                        <input type="text" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label font-catamaran">Last Name</label>
-                        <input type="text" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress" class="form-label font-catamaran">Email</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress2" class="form-label font-catamaran">Phone</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder=".......">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputCity" class="form-label font-catamaran">Nationality</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputState" class="form-label font-catamaran">Age</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputState" class="form-label font-catamaran">Gender</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-
-                        <label class="col-form-label font-catamaran">Do you have insurance coverage?</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label font-catamaran" for="inlineRadio1">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label font-catamaran" for="inlineRadio2">No</label>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <label class="col-form-label font-catamaran">Do you want user account?</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
-                            <label class="form-check-label font-catamaran" for="inlineRadioUserAccountYes">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
-                            <label class="form-check-label font-catamaran" for="inlineRadioUserAccountNo">No</label>
-                        </div>
-                    </div>
-                </div>
-                <h5 class="card-title text-center">Quote Requirement</h5>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label font-catamaran">Vehicle Model|Year|Class</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label font-catamaran">Vehicle Size</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputState" class="form-label font-catamaran">Passengers / Guest Counts</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputState" class="form-label font-catamaran">Do you want drivers?</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress" class="form-label font-catamaran">Vehicle Type</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress2" class="form-label font-catamaran">Expected Date & Time of Arrival (Start Date time)</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputCity" class="form-label font-catamaran">Expected Date & Time of Return (End Date time)</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="inputCity" class="form-label font-catamaran">Spanish Address</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="inputCity" class="form-label font-catamaran">Any notes or Special requests..</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
-                </div>
+                <br />
+                @await Html.PartialAsync("_PersonalInformation.cshtml")
+                <br />
+                @await Html.PartialAsync("_QuoteInformation.cshtml")
+                <br />
             </div>
         </div>
     </div>
     <div class=" col-sm-4">
-        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4">
+        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4 bg-new-color-1">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
+                <p class="card-text font-catamaran-20">24 Hour Breakdown Recovery Number</p>
+                <p class="card-text font-catamaran-40">+34 900 101 369</p>
+                <p class="card-text font-catamaran-20">Hotline and Whatsapp</p>
+                <p class="card-text font-catamaran-40">+34 722 677 508</p>
+                <p class="card-text font-catamaran-20-1">Useful Links</p>
+                <p class="card-text font-catamaran-20-1">
+                    <a href="">Terms of Service</a> ||
+                    <a href="">Privacy Policy</a> ||
+                    <a href="">Home Page</a>
+                </p>
+                <p class="card-text font-catamaran-20-1">Social Media</p>
+                <p class="card-text font-catamaran-20-1">
+                    <a href="">Facebook</a> ||
+                    <a href="">Whats app</a>
+                </p>
             </div>
         </div>
-        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4">
+        <div class="card shadow-lg p-1 mb-1 bg-body-tertiary rounded-4 bg-new-color-2">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
+                <p class="card-text font-catamaran-20-1 lh-lg">
+                    <b>Quote Summary</b>
+                    <br />Quote  receiver:
+                    <br />Phone:
+                    <br>Email:
+                    <br>Insurance:
+                    <br>Vehicle:
+                    <br>Transmission:
+                    <br>From:
+                    <hr />
+                <p class="text-center font-catamaran-20">Estimated Quote Price</p>
+                <p class="text-center font-catamaran-64">$ </p>
+                <p class="text-center font-catamaran-14">
+                    This is an approximate price based on your input,
+                    <br />
+                    it is subject to vary on different aspects
+                </p>
+
             </div>
+            <br />
         </div>
     </div>
 
