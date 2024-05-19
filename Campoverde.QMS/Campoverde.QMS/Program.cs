@@ -1,7 +1,14 @@
+using Campoverde.QMS.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CampoverdeDbContext>(option =>
+option.UseNpgsql(builder.Configuration.GetConnectionString("campoverdeDbConnection")));
+
+// Depency inject
+builder.Services.AddTransient<IVehicle, VehicleService>();
 
 var app = builder.Build();
 
