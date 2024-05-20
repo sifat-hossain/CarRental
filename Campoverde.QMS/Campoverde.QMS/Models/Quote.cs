@@ -10,7 +10,7 @@ public class Quote : BaseEntity
     public Customer Customer { get; set; }
     public VehicleSizeEnum VehicleSize { get; set; }
     public VehicleTypeEnum VehicleType { get; set; }
-    public bool IsDriverNeeded { get; set; }
+    public PassengerCountEnum PassengerCount { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public string SpanishAddress { get; set; }
