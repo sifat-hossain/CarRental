@@ -1,123 +1,172 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Campoverde.QMS.Models.Quote
+@{
+    ViewData["Title"] = "Quote";
 }
-<style>
-    .font-catamaran-16 {
-        font-family: catamaran;
-        font-size: 16px;
-        font-weight: 500
-    }
-
-    .font-catamaran-20 {
-        font-family: catamaran;
-        font-size: 20px;
-        font-weight: 700
-    }
-
-    .font-catamaran-20-1 {
-        font-family: catamaran;
-        font-size: 20px;
-        font-weight: 400
-    }
-
-    .font-catamaran-40 {
-        font-family: catamaran;
-        font-size: 40px;
-        font-weight: 700
-    }
-
-    .font-catamaran-64 {
-        font-family: catamaran;
-        font-size: 64px;
-        font-weight: 800
-    }
-
-    .font-catamaran-14 {
-        font-family: catamaran;
-        font-size: 14px;
-        font-weight: 400
-    }
-
-    .font-catamaran-13 {
-        font-family: catamaran;
-        font-size: 13px;
-        font-weight: 500
-    }
-
-    .bg-new-color {
-        background-color: rgba(217,217,217,.43);
-    }
-
-    .bg-new-color-1 {
-        background-color: rgba(217,217,217,1);
-    }
-
-    .bg-new-color-2 {
-        background-color: rgba(238,238,238,1);
-    }
-</style>
-<div class="text-center">
-    <h1 style="font-family:Abel;font-weight:900">Campoverde Car Hire</h1>
-    <p>Your Journey Starts Here</p>
-    <p class="display-6" style="font-family:Abel;font-weight:800">Get a Quote</p>
-</div>
-<hr />
-<hr />
-<div class="row">
-    <div class="col col-sm-8 mb-3 mb-sm-0">
-        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4 bg-new-color">
-            <div class="card-body ">
-                <br />
-                @await Html.PartialAsync("_PersonalInformation.cshtml")
-                <br />
-                @await Html.PartialAsync("_QuoteInformation.cshtml")
-                <br />
+<section>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="mainTitle">Campoverde Car Hire</h1>
+                <p class="tagline">Your Journey Starts Here</p>
+                <p class="headingText">Get a Quote</p>
             </div>
         </div>
     </div>
-    <div class=" col-sm-4">
-        <div class="card shadow-lg p-1 mb-3 bg-body-tertiary rounded-4 bg-new-color-1">
-            <div class="card-body">
-                <p class="card-text font-catamaran-20">24 Hour Breakdown Recovery Number</p>
-                <p class="card-text font-catamaran-40">+34 900 101 369</p>
-                <p class="card-text font-catamaran-20">Hotline and Whatsapp</p>
-                <p class="card-text font-catamaran-40">+34 722 677 508</p>
-                <p class="card-text font-catamaran-20-1">Useful Links</p>
-                <p class="card-text font-catamaran-20-1">
-                    <a href="">Terms of Service</a> ||
-                    <a href="">Privacy Policy</a> ||
-                    <a href="">Home Page</a>
-                </p>
-                <p class="card-text font-catamaran-20-1">Social Media</p>
-                <p class="card-text font-catamaran-20-1">
-                    <a href="">Facebook</a> ||
-                    <a href="">Whats app</a>
-                </p>
-            </div>
-        </div>
-        <div class="card shadow-lg p-1 mb-1 bg-body-tertiary rounded-4 bg-new-color-2">
-            <div class="card-body">
-                <p class="card-text font-catamaran-20-1 lh-lg">
-                    <b>Quote Summary</b>
-                    <br />Quote  receiver:
-                    <br />Phone:
-                    <br>Email:
-                    <br>Insurance:
-                    <br>Vehicle:
-                    <br>Transmission:
-                    <br>From:
-                    <hr />
-                <p class="text-center font-catamaran-20">Estimated Quote Price</p>
-                <p class="text-center font-catamaran-64">$ </p>
-                <p class="text-center font-catamaran-14">
-                    This is an approximate price based on your input,
-                    <br />
-                    it is subject to vary on different aspects
-                </p>
+</section>
 
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-8 mb-3 mb-sm-0">
+                <div class="card  p-1 mb-3 bg-body-tertiary quoteForm" >
+                    <div class="card-body ">
+                        <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">First Name</label>
+                                <input type="text" class="form-control" asp-for=Customer.FirstName id="firstName">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" asp-for=Customer.LastName id="lastName">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputAddress" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="example@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputAddress2" class="form-label ">Phone</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder=".......">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">Nationality</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label">Age</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label">Gender</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="col-form-label ">Do you want user account?</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
+                                    <label class="form-check-label " for="inlineRadioUserAccountYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
+                                    <label class="form-check-label " for="inlineRadioUserAccountNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <h5 class="card-title text-left  mt-3 pb-3">Quote Requirement</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label ">Vehicle Model|Year|Class</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label ">Vehicle Size</label>
+                                <input type="password" class="form-control" id="inputPassword4">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label ">Passengers / Guest Counts</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label ">Do you want drivers?</label>
+                                <select id="inputState" class="form-select">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputAddress" class="form-label ">Vehicle Type</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputAddress2" class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">Expected Date & Time of Return (End Date time)</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputCity" class="form-label ">Spanish Address</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputCity" class="form-label ">Any notes or Special requests..</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <p>
+                                    By clicking the <span class="span">Get My Estimate</span> button you agree to the terms and conditions set out below.
+                                    This is part of the contract you will receive when you collect your car. </p>
+                                <button type="submit" class="btn btn-primary submitButton">Get My Estimate >></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br />
+
+
+            <div class=" col-sm-4">
+                <div class="card p-1 mb-3 bg-body-tertiary widgetOne">
+                    <div class="card-body widgetBody">
+                        <h6>24 Hour Breakdown Recovery Number</h6>
+                        <p id="boldCaterman">+34 900 101 369</p>
+                        <h6>Hotline and WhatsApp</h6>
+                        <p id="boldCaterman">+34 722 677 508</p>
+                        <h6>Useful Links</h6>
+                        <p>Home || Privacy Policy || Terms of Service</p>
+                        <h6>Social Media</h6>
+                        <p>Facebook || Whats App</p>
+                        
+                    </div>
+                </div>
+                <div class="card p-1 mb-3 bg-body-tertiary widgetTwo">
+                    <div class="card-body ">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text font-catamaran-20-1 lh-lg">
+                            <b>Quote Summary</b>
+                            <br />Quote  receiver:
+                            <br />Phone:
+                            <br>Email:
+                            <br>Insurance:
+                            <br>Vehicle:
+                            <br>Transmission:
+                            <br>From:
+                            <hr />
+                        <p class="text-center catamaran">Estimated Quote Price</p>
+                        <p class="text-center catamaran">$ </p>
+                        <p class="text-center catamaran">
+                            This is an approximate price based on your input,
+                            <br />
+                            it is subject to vary on different aspects
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+</section>
 
-</div>
+
