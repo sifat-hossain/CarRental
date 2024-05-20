@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Campoverde.QMS.Controllers
 {
-    public class QuoteController(CampoverdeDbContext context) : Controller
+    public class QuoteController(CampoverdeDbContext context, IMailService mailService) : Controller
     {
         private readonly CampoverdeDbContext _context = context;
+        private readonly IMailService _mailService = mailService;
+
+
+
 
         // GET: Quotes
         public async Task<IActionResult> Index()
@@ -53,6 +57,9 @@ namespace Campoverde.QMS.Controllers
             {
                 _context.Add(quote);
                 await _context.SaveChangesAsync();
+
+
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", quote.CustomerId);
