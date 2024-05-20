@@ -28,19 +28,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-start">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">About</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Product</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Quote</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Pricing</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Vehicle" asp-action="Index">Vehicle</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Blog</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Jobs</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Index">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">More</a>
@@ -50,7 +53,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container body-content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
