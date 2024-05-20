@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Campoverde.QMS.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class New : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,10 @@ namespace Campoverde.QMS.Data.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
+                    Age = table.Column<int>(type: "integer", nullable: false),
+                    Gender = table.Column<int>(type: "integer", nullable: false),
                     HomeAddress = table.Column<string>(type: "text", nullable: false),
+                    Nationality = table.Column<string>(type: "text", nullable: false),
                     SpanishAddress = table.Column<string>(type: "text", nullable: false),
                     DriverName = table.Column<string>(type: "text", nullable: false),
                     PrimaryDrivingLicenceNumber = table.Column<string>(type: "text", nullable: false),
@@ -59,6 +62,7 @@ namespace Campoverde.QMS.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Model = table.Column<string>(type: "text", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -101,7 +105,7 @@ namespace Campoverde.QMS.Data.Migrations
                     CustomerId = table.Column<int>(type: "integer", nullable: false),
                     VehicleSize = table.Column<int>(type: "integer", nullable: false),
                     VehicleType = table.Column<int>(type: "integer", nullable: false),
-                    IsDriverNeeded = table.Column<bool>(type: "boolean", nullable: false),
+                    PassengerCount = table.Column<int>(type: "integer", nullable: false),
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     SpanishAddress = table.Column<string>(type: "text", nullable: false),

@@ -5,9 +5,9 @@ namespace Campoverde.QMS.Models;
 public class Quote : BaseEntity
 {
     public int VehicleId { get; set; }
-    public Vehicle Vehicle { get; set; }
+    public Vehicle? Vehicle { get; set; }
     public int CustomerId { get; set; }
-    public Customer Customer { get; set; }
+    public Customer? Customer { get; set; }
     public VehicleSizeEnum VehicleSize { get; set; }
     public VehicleTypeEnum VehicleType { get; set; }
     public PassengerCountEnum PassengerCount { get; set; }
@@ -19,5 +19,7 @@ public class Quote : BaseEntity
     public DateTime LastUpdatedTime { get; set; }
     public DateTime LastUpdatedByUser { get; set; }
     public QuoteStatusEnum Status { get; set; }
-    public List<QuoteNote> Notes { get; set; }
+
+    public string IsUserAccountNeeded { get; set; }
+    public List<QuoteNote>? Notes { get; set; }
 }

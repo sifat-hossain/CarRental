@@ -18,5 +18,5 @@ public class Customer : BaseEntity
     public string SecondaryDrivingLicenseNumber { get; set; }
     public string LicenseExpiryDate { get; set; }
     public string DriverPassportNumber { get; set; }
-    public List<Quote> Quotes { get; set; }
+    public List<Quote>? Quotes { get; set; }
 }

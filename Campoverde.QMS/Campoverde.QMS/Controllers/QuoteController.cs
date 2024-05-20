@@ -47,10 +47,19 @@ namespace Campoverde.QMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VehicleId,Customer,VehicleSize,VehicleType,PassengerCount,StartDate,EndDate,SpanishAddress,SpecialRequet,QuotePrice,LastUpdatedTime,LastUpdatedByUser,Status,Id,IsDeleted,IsActive")] Quote quote)
+        public async Task<IActionResult> Create([Bind("VehicleId,Customer,VehicleSize,VehicleType,PassengerCount,StartDate,EndDate,SpanishAddress,SpecialRequet,QuotePrice,LastUpdatedTime,LastUpdatedByUser,Status,Id,IsDeleted,IsActive,IsUserAccountNeeded")] Quote quote)
         {
             if (ModelState.IsValid)
             {
+                if (quote.IsUserAccountNeeded == "yes")
+                {
+                    User user = new User
+                    {
+                        Email = quote.Customer.Email,
+                        Phone = quote.Customer.Phone,
+                        Password = quote.
+                    }
+                }
                 _context.Add(quote);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -153,6 +162,20 @@ namespace Campoverde.QMS.Controllers
         private bool QuoteExists(int id)
         {
             return _context.Quote.Any(e => e.Id == id);
+        }
+
+        [HttpGet]
+        public JsonResult GetPrice(int vehicleModelId)
+        {
+
+            var vehicleModel = _context.Vehicle.FirstOrDefault(vm => vm.Id == vehicleModelId);
+
+            if (vehicleModel != null)
+            {
+                return Json(vehicleModel.Price);
+            }
+
+            return Json(null);
         }
     }
 }
