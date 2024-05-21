@@ -1,31 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Campoverde.QMS.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Campoverde.QMS.Data;
-using Campoverde.QMS.Models;
 
 namespace Campoverde.QMS.Controllers
 {
-    public class VehicleController : Controller
+    public class UserController(CampoverdeDbContext context) : Controller
     {
-        private readonly CampoverdeDbContext _context;
+        private readonly CampoverdeDbContext _context = context;
 
-        public VehicleController(CampoverdeDbContext context)
-        {
-            _context = context;
-        }
-
-        // GET: Vehicle
+        // GET: User
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vehicle.ToListAsync());
+            var campoverdeDbContext = _context.User.Include(u => u.Role);
+            return View(await campoverdeDbContext.ToListAsync());
         }
 
-        // GET: Vehicle/Details/5
+        // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +22,42 @@ namespace Campoverde.QMS.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
+            var user = await _context.User
+                .Include(u => u.Role)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(user);
         }
 
-        // GET: Vehicle/Create
+        // GET: User/Create
         public IActionResult Create()
         {
+            ViewData["RoleId"] = new SelectList(_context.Role, "Id", "Name");
             return View();
         }
 
-        // POST: Vehicle/Create
+        // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Model,Price,Id,IsDeleted,IsActive")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Email,Phone,Password,RoleId,Id,IsDeleted,IsActive")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            ViewData["RoleId"] = new SelectList(_context.Role, "Id", "Id", user.RoleId);
+            return View(user);
         }
 
-        // GET: Vehicle/Edit/5
+        // GET: User/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +65,23 @@ namespace Campoverde.QMS.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle.FindAsync(id);
-            if (vehicle == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(vehicle);
+            ViewData["RoleId"] = new SelectList(_context.Role, "Id", "Id", user.RoleId);
+            return View(user);
         }
 
-        // POST: Vehicle/Edit/5
+        // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Model,Price,Id,IsDeleted,IsActive")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Email,Phone,Password,RoleId,Id,IsDeleted,IsActive")] User user)
         {
-            if (id != vehicle.Id)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -97,12 +90,12 @@ namespace Campoverde.QMS.Controllers
             {
                 try
                 {
-                    _context.Update(vehicle);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +106,11 @@ namespace Campoverde.QMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            ViewData["RoleId"] = new SelectList(_context.Role, "Id", "Id", user.RoleId);
+            return View(user);
         }
 
-        // GET: Vehicle/Delete/5
+        // GET: User/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +118,35 @@ namespace Campoverde.QMS.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
+            var user = await _context.User
+                .Include(u => u.Role)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(user);
         }
 
-        // POST: Vehicle/Delete/5
+        // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vehicle = await _context.Vehicle.FindAsync(id);
-            if (vehicle != null)
+            var user = await _context.User.FindAsync(id);
+            if (user != null)
             {
-                _context.Vehicle.Remove(vehicle);
+                _context.User.Remove(user);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Vehicle.Any(e => e.Id == id);
+            return _context.User.Any(e => e.Id == id);
         }
     }
 }

@@ -16,7 +16,8 @@
 
 <section>
     <div class="container">
-        <form class="row">
+        <form class="row" asp-controller="Quote" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col col-sm-8 mb-3 mb-sm-0">
                 <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
                     <div class="card-body ">
@@ -64,11 +65,11 @@
                             <div class="col-md-6" id="userAccount">
                                 <label class="col-form-label ">Do you want user account?</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
+                                    <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" value="yes">
                                     <label class="form-check-label " for="inlineRadioUserAccountYes">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="userAccount" id="userAccount">
+                                    <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" value="no">
                                     <label class="form-check-label " for="inlineRadioUserAccountNo">No</label>
                                 </div>
                             </div>
@@ -78,7 +79,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Model|Year|Class</label>
-                                <select asp-for=Vehicle.Id id="vehicle" class="form-select">
+                                <select asp-for=Vehicle.Id asp-items="ViewBag.VehicleId" id="vehicle" class="form-select">
                                     <option selected>Choose Vehicle...</option>
                                 </select>
                             </div>
@@ -109,11 +110,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
-                                <input asp-for=StartDate type="datetime" class="form-control" id="startDate">
+                                <input asp-for=StartDate type="date" class="form-control" id="startDate">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Return (End Date time)</label>
-                                <input asp-for=EndDate type="datetime" class="form-control" id="endDate">
+                                <input asp-for=EndDate type="date" class="form-control" id="endDate">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
@@ -123,7 +124,7 @@
                                 <label class="form-label ">Any notes or Special requests..</label>
                                 <input asp-for=SpecialRequet type="text" class="form-control" id="specialRequest">
                             </div>
-                            <input asp-for=QuotePrice type="text" id="quotePrice" hidden>
+                            <input asp-for=QuotePrice type="number" id="quotePrice" hidden>
                             <div class="col-12 text-center">
                                 <p>
                                     By clicking the <span class="span">Get My Estimate</span> button you agree to the terms and conditions set out below.
@@ -175,5 +176,57 @@
         </form>
     </div>
 </section>
+<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
 
+        // $('#vehicle').change(function () {
+        //     calculatePrice();
+        // });
 
+        // $('#startDate, #endDate').change(function () {
+        //     calculatePrice();
+        // });
+        $('#vehicle, #startDate, #endDate').change(function () {
+            var vehicleModelId = $('#vehicle').val();
+            var startDate = new Date($('#startDate').val());
+            var endDate = new Date($('#endDate').val());
+
+            if (vehicleModelId && startDate && endDate) {
+                calculatePrice();
+            }
+        });
+
+        function calculatePrice() {
+           
+            var vehicleModelId = $('#vehicle').val();
+            var startDate = new Date($('#startDate').val());
+            var endDate = new Date($('#endDate').val());
+
+            $.ajax({
+                url: '/Quote/GetPrice',
+                type: 'GET',
+                data: { vehicleModelId: vehicleModelId },
+                success: function (response) {
+
+                    if (response !== null) {
+                        debugger;
+                        var price = response;
+                        var hoursDifference = Math.abs(startDate - endDate) / 36e5; // Convert milliseconds to hours
+                        var totalPrice = price * hoursDifference;
+                        $('#price').text('Total Price: ' + totalPrice.toFixed(2));
+                        $('#quotePrice').val(totalPrice.toFixed(2));
+                    } else {
+                        $('#price').text('Price not available');
+                    }
+                },
+                error: function () {
+                    $('#price').text('Error occurred');
+                }
+            });
+        }
+    });
+
+</script>

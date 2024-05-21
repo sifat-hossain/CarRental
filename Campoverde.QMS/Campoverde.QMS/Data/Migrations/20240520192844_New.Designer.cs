@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    [Migration("20240518191236_AddPriceColumnInVehicleTable")]
-    partial class AddPriceColumnInVehicleTable
+    [Migration("20240520192844_New")]
+    partial class New
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace Campoverde.QMS.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
                     b.Property<string>("DriverName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -49,6 +52,9 @@ namespace Campoverde.QMS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("integer");
+
                     b.Property<string>("HomeAddress")
                         .IsRequired()
                         .HasColumnType("text");
@@ -64,6 +70,10 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LicenseExpiryDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nationality")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -108,14 +118,14 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("IsDriverNeeded")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime>("LastUpdatedByUser")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("LastUpdatedTime")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("PassengerCount")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("QuotePrice")
                         .HasColumnType("numeric");
