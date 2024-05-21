@@ -9,6 +9,7 @@ option.UseNpgsql(builder.Configuration.GetConnectionString("campoverdeDbConnecti
 
 // Depency inject
 builder.Services.AddTransient<IVehicle, VehicleService>();
+builder.Services.AddTransient<IMailService, MailService>();
 
 var app = builder.Build();
 
