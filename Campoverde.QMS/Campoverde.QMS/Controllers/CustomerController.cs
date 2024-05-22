@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-
-namespace Campoverde.QMS.Controllers
+﻿namespace Campoverde.QMS.Controllers
 {
     public class CustomerController(CampoverdeDbContext context) : Controller
     {
@@ -9,7 +7,7 @@ namespace Campoverde.QMS.Controllers
         // GET: Customer
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customer.ToListAsync());
+            return View(await _context.Customer.OrderByDescending(x => x.Id).ToListAsync());
         }
 
         // GET: Customer/Details/5

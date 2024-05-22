@@ -8,8 +8,11 @@ builder.Services.AddDbContext<CampoverdeDbContext>(option =>
 option.UseNpgsql(builder.Configuration.GetConnectionString("campoverdeDbConnection")));
 
 // Depency inject
-builder.Services.AddTransient<IVehicle, VehicleService>();
-builder.Services.AddTransient<IMailService, MailService>();
+builder.Services.AddScoped<IVehicle, VehicleService>();
+builder.Services.AddScoped<IMailService, MailService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IQuoteService, QuoteService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
@@ -30,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Quote}/{action=Create}/{id?}");
 
 app.Run();

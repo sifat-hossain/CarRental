@@ -57,7 +57,7 @@ body {
 }
 
 .form-control {
-    border-color: white;
+    border-color: var(--quoteBg-color);
 }
 
 .widgetOne {

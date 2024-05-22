@@ -3,6 +3,7 @@ using System;
 using Campoverde.QMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240522035123_CreateNullableInCustomerproperty")]
+    partial class CreateNullableInCustomerproperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

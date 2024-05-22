@@ -1,5 +1,4 @@
-﻿using Campoverde.QMS.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Campoverde.QMS.Controllers
 {
@@ -10,7 +9,9 @@ namespace Campoverde.QMS.Controllers
         // GET: User
         public async Task<IActionResult> Index()
         {
-            var campoverdeDbContext = _context.User.Include(u => u.Role);
+            var campoverdeDbContext = _context.User
+                .OrderByDescending(x => x.Id)
+                .Include(u => u.Role);
             return View(await campoverdeDbContext.ToListAsync());
         }
 

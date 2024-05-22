@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Age</label>
-                                <select asp-for=Customer.Age id="age" class="form-select">
+                                <select asp-for=Customer.Age id="age" class="form-control form-select">
                                     <option selected>Choose...</option>
                                     <option value="1">One year</option>
                                     <option value="2">Two Years</option>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Gender</label>
-                                <select asp-for=Customer.Gender id="gender" class="form-select">
+                                <select asp-for=Customer.Gender id="gender" class="form-control form-select">
                                     <option selected>Choose...</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
@@ -79,22 +79,22 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Model|Year|Class</label>
-                                <select asp-for=Vehicle.Id asp-items="ViewBag.VehicleId" id="vehicle" class="form-select">
+                                <select asp-for=VehicleId asp-items="ViewBag.VehicleId" id="vehicle" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Size</label>
-                                <select asp-for=VehicleSize id="vehicleSize" class="form-select">
+                                <select asp-for=VehicleSize id="vehicleSize" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                     <option value="0">Small</option>
                                     <option value="1">Lerge</option>
                                     <option value="2">Medium</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label class="form-label ">Passengers / Guest Counts</label>
-                                <select asp-for=PassengerCount id="passengerCount" class="form-select">
+                                <select asp-for=PassengerCount id="passengerCount" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                     <option value="1">4 Persons</option>
                                     <option value="2">6 Persons</option>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Type</label>
-                                <select asp-for=VehicleType id="vehicleType" class="form-select">
+                                <select asp-for=VehicleType id="vehicleType" class="form-control form-select">
                                     <option selected>Choose Vehicle Type...</option>
                                     <option value="0">Manual</option>
                                     <option value="1">Automatic</option>
@@ -110,18 +110,18 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
-                                <input asp-for=StartDate type="date" class="form-control" id="startDate">
+                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:yyyy-MM-ddTHH:mm}">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Return (End Date time)</label>
-                                <input asp-for=EndDate type="date" class="form-control" id="endDate">
+                                <input asp-for=EndDate asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" id="endDate">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
                                 <input asp-for=SpanishAddress type="text" class="form-control" id="spanishAddress">
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label ">Any notes or Special requests..</label>
+                                <label class="form-label ">Spanish Address</label>
                                 <input asp-for=SpecialRequet type="text" class="form-control" id="specialRequest">
                             </div>
                             <input asp-for=QuotePrice type="number" id="quotePrice" hidden>
@@ -155,13 +155,13 @@
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text font-catamaran-20-1 lh-lg">
                             <b>Quote Summary</b>
-                            <br />Quote  receiver:
-                            <br />Phone:
-                            <br>Email:
-                            <br>Insurance:
-                            <br>Vehicle:
-                            <br>Transmission:
-                            <br>From:
+                            <br />Quote  receiver: <span id="receiver"></span>
+                            <br />Phone: <span id="qPhone"></span>
+                            <br>Email: <span id="qEmail"></span>
+                            <br>Insurance: N/A
+                            <br>Vehicle: <span id="qVehicle"></span>
+                            <br>Transmission: N/A
+                            <br>From: <span id="qFromDate"> </span> To <span id="qToDate"></span>
                             <hr />
                         <p class="text-center catamaran">Estimated Quote Price</p>
                         <p class="text-center catamaran">$ <span id="price"></span> </p>
@@ -176,19 +176,41 @@
         </form>
     </div>
 </section>
-<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
     $(document).ready(function () {
+        $('#firstName').on('input', updateFullName);
+        $('#lastName').on('input', updateFullName);
 
-        // $('#vehicle').change(function () {
-        //     calculatePrice();
-        // });
+        function updateFullName() {
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            $('#receiver').text(firstName + ' ' + lastName);
+        }
 
-        // $('#startDate, #endDate').change(function () {
-        //     calculatePrice();
-        // });
+        $('#email').on('input', function () {
+            var email = $('#email').val();
+            $('#qEmail').text(email);
+        });
+
+        $('#phone').on('input', function () {
+            var phone = $('#phone').val();
+            $('#qPhone').text(phone);
+        });
+
+        $('#startDate').change(function () {
+            var startDate = $('#startDate').val();
+            $('#qFromDate').text(startDate);
+        });
+
+        $('#endDate').change(function () {
+            var endDate = $('#endDate').val();
+            $('#qToDate').text(endDate);
+        });
+
+       
+
         $('#vehicle, #startDate, #endDate').change(function () {
             var vehicleModelId = $('#vehicle').val();
             var startDate = new Date($('#startDate').val());
@@ -196,11 +218,12 @@
 
             if (vehicleModelId && startDate && endDate) {
                 calculatePrice();
+                GetVehicleModel();
             }
         });
 
         function calculatePrice() {
-           
+
             var vehicleModelId = $('#vehicle').val();
             var startDate = new Date($('#startDate').val());
             var endDate = new Date($('#endDate').val());
@@ -212,7 +235,6 @@
                 success: function (response) {
 
                     if (response !== null) {
-                        debugger;
                         var price = response;
                         var hoursDifference = Math.abs(startDate - endDate) / 36e5; // Convert milliseconds to hours
                         var totalPrice = price * hoursDifference;
@@ -224,6 +246,29 @@
                 },
                 error: function () {
                     $('#price').text('Error occurred');
+                }
+            });
+        }
+        function GetVehicleModel() {
+
+            var vehicleModelId = $('#vehicle').val();           
+
+            $.ajax({
+                url: '/Quote/GetModel',
+                type: 'GET',
+                data: { vehicleModelId: vehicleModelId },
+                success: function (response) {
+
+                    if (response !== null) {
+                        var vehicleModel = response;
+                        
+                        $('#qVehicle').text(vehicleModel);
+                    } else {
+                        $('#qVehicle').text('');
+                    }
+                },
+                error: function () {
+                    $('#qVehicle').text('Error occurred');
                 }
             });
         }

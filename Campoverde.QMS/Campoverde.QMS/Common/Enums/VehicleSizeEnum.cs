@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Campoverde.QMS.Enums;
+namespace Campoverde.QMS.Common.Enums;
 
 public enum VehicleSizeEnum
 {

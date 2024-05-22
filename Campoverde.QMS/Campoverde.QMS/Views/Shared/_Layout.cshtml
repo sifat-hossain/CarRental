@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Campoverde.QMS.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css" />
+
 </head>
 <body>
     <header>
@@ -26,10 +28,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 justify-content-start">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="" asp-action="">About</a>
-                        </li>
+                    <ul class="navbar-nav flex-grow-1 justify-content-start">                       
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Quote" asp-action="Create">Quote</a>
                         </li>
@@ -45,9 +44,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">More</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -69,5 +66,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+        <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
+        <script>
+            new DataTable('#dataTable');
+        </script>
+    
 </body>
 </html>
