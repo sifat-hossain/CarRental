@@ -1,28 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Campoverde.QMS.Data;
-using Campoverde.QMS.Models;
-
-namespace Campoverde.QMS.Controllers
+﻿namespace Campoverde.QMS.Controllers
 {
-    public class VehicleController : Controller
+    public class VehicleController(CampoverdeDbContext context) : Controller
     {
-        private readonly CampoverdeDbContext _context;
-
-        public VehicleController(CampoverdeDbContext context)
-        {
-            _context = context;
-        }
+        private readonly CampoverdeDbContext _context = context;
 
         // GET: Vehicle
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vehicle.ToListAsync());
+            return View(await _context.Vehicle.OrderByDescending(x => x.Id).ToListAsync());
         }
 
         // GET: Vehicle/Details/5

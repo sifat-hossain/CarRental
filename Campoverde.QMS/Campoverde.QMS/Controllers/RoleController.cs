@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-
-namespace Campoverde.QMS.Controllers
+﻿namespace Campoverde.QMS.Controllers
 {
     public class RoleController(CampoverdeDbContext context) : Controller
     {
@@ -9,7 +7,10 @@ namespace Campoverde.QMS.Controllers
         // GET: Roles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Role.Where(x => x.IsDeleted == false).ToListAsync());
+            return View(await _context.Role
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.Id)
+                .ToListAsync());
         }
 
         // GET: Roles/Details/5

@@ -197,7 +197,7 @@ public class MailService : IMailService
             <h1>Welcome to Campoverde Car Hire</h1>
         </div>
         <div class=""""content"""">
-            <p>Hi {{Name of the guy who filled up the form}},</p>
+            <p>Hi {name},</p>
             <p>Thank you for reaching out and for your interest in our Car Hire / Airport Transfers. Your inquiry and the opportunity to provide you with a quote are greatly appreciated.</p>
             <p>I'm currently out of the office, but I'll be sure to review your request as soon as I return. Rest assured, I'll get back to you with the requested quote promptly.</p>
             <p>In the meantime, if you have any urgent matters or further questions, please feel free to contact Marcus at +34 772 67 75 08 or Yorkie at +34 622 42 86 67 or by clicking the WhatsApp link on our website.</p>

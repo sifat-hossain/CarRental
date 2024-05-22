@@ -4,8 +4,7 @@ namespace Campoverde.QMS.Services;
 public class QuoteService(CampoverdeDbContext dbContext,
     IUserService userService,
     ICustomerService customerService,
-    IMailService mailService)
-    : IQuoteService
+    IMailService mailService) : IQuoteService
 {
     private readonly CampoverdeDbContext _dbContext = dbContext;
     private readonly IUserService _userService = userService;
@@ -37,6 +36,7 @@ public class QuoteService(CampoverdeDbContext dbContext,
                 quote.StartDate = DateTime.SpecifyKind(quote.StartDate, DateTimeKind.Utc);
                 quote.LastUpdatedByUser = DateTime.UtcNow;
                 quote.LastUpdatedTime = DateTime.UtcNow;
+                quote.Status = QuoteStatusEnum.New;
                 await _dbContext.Quote.AddAsync(quote);
             }
             else
