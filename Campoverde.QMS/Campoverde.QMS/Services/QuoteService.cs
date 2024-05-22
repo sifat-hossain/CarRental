@@ -33,6 +33,8 @@ public class QuoteService(CampoverdeDbContext dbContext,
             {
                 quote.IsActive = true;
                 quote.IsDeleted = false;
+                quote.EndDate = DateTime.SpecifyKind(quote.EndDate, DateTimeKind.Utc);
+                quote.StartDate = DateTime.SpecifyKind(quote.StartDate, DateTimeKind.Utc);
                 quote.LastUpdatedByUser = DateTime.UtcNow;
                 quote.LastUpdatedTime = DateTime.UtcNow;
                 await _dbContext.Quote.AddAsync(quote);

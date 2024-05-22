@@ -79,7 +79,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Model|Year|Class</label>
-                                <select asp-for=Vehicle.Id asp-items="ViewBag.VehicleId" id="vehicle" class="form-control form-select">
+                                <select asp-for=VehicleId asp-items="ViewBag.VehicleId" id="vehicle" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                 </select>
                             </div>
@@ -110,11 +110,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
-                                <input asp-for=StartDate type="date" class="form-control" id="startDate">
+                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:yyyy-MM-ddTHH:mm}">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Return (End Date time)</label>
-                                <input asp-for=EndDate type="date" class="form-control" id="endDate">
+                                <input asp-for=EndDate asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" id="endDate">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
@@ -212,7 +212,6 @@
                 success: function (response) {
 
                     if (response !== null) {
-                        debugger;
                         var price = response;
                         var hoursDifference = Math.abs(startDate - endDate) / 36e5; // Convert milliseconds to hours
                         var totalPrice = price * hoursDifference;
