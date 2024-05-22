@@ -1,4 +1,4 @@
-﻿using Campoverde.QMS.Enums;
+﻿using Campoverde.QMS.Common.Enums;
 
 namespace Campoverde.QMS.ViewModel;
 

@@ -1,15 +1,11 @@
-﻿using Campoverde.QMS.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Campoverde.QMS.Controllers
 {
-    public class QuoteController(CampoverdeDbContext context, IMailService mailService) : Controller
+    public class QuoteController(CampoverdeDbContext context, IMailService mailService, IQuoteService quoteService) : Controller
     {
         private readonly CampoverdeDbContext _context = context;
-        private readonly IMailService _mailService = mailService;
-
-
-
+        private readonly IQuoteService _quoteService = quoteService;
 
         // GET: Quotes
         public async Task<IActionResult> Index()
@@ -55,20 +51,7 @@ namespace Campoverde.QMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (quote.IsUserAccountNeeded == "yes")
-                {
-                    User user = new User
-                    {
-                        Email = quote.Customer.Email,
-                        Phone = quote.Customer.Phone,
-                        Password = quote.
-                    }
-                }
-                _context.Add(quote);
-                await _context.SaveChangesAsync();
-
-
-
+                await _quoteService.CreateQuoteAsync(quote);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "Id", quote.CustomerId);

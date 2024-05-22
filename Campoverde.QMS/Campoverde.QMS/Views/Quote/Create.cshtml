@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Age</label>
-                                <select asp-for=Customer.Age id="age" class="form-select">
+                                <select asp-for=Customer.Age id="age" class="form-control form-select">
                                     <option selected>Choose...</option>
                                     <option value="1">One year</option>
                                     <option value="2">Two Years</option>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Gender</label>
-                                <select asp-for=Customer.Gender id="gender" class="form-select">
+                                <select asp-for=Customer.Gender id="gender" class="form-control form-select">
                                     <option selected>Choose...</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
@@ -79,22 +79,22 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Model|Year|Class</label>
-                                <select asp-for=Vehicle.Id asp-items="ViewBag.VehicleId" id="vehicle" class="form-select">
+                                <select asp-for=Vehicle.Id asp-items="ViewBag.VehicleId" id="vehicle" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Size</label>
-                                <select asp-for=VehicleSize id="vehicleSize" class="form-select">
+                                <select asp-for=VehicleSize id="vehicleSize" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                     <option value="0">Small</option>
                                     <option value="1">Lerge</option>
                                     <option value="2">Medium</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label class="form-label ">Passengers / Guest Counts</label>
-                                <select asp-for=PassengerCount id="passengerCount" class="form-select">
+                                <select asp-for=PassengerCount id="passengerCount" class="form-control form-select">
                                     <option selected>Choose Vehicle...</option>
                                     <option value="1">4 Persons</option>
                                     <option value="2">6 Persons</option>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Type</label>
-                                <select asp-for=VehicleType id="vehicleType" class="form-select">
+                                <select asp-for=VehicleType id="vehicleType" class="form-control form-select">
                                     <option selected>Choose Vehicle Type...</option>
                                     <option value="0">Manual</option>
                                     <option value="1">Automatic</option>

@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Enums;
-
-namespace Campoverde.QMS.Models;
+﻿namespace Campoverde.QMS.Models;
 
 public class Quote : BaseEntity
 {
@@ -20,6 +18,7 @@ public class Quote : BaseEntity
     public DateTime LastUpdatedByUser { get; set; }
     public QuoteStatusEnum Status { get; set; }
 
+    [NotMapped]
     public string IsUserAccountNeeded { get; set; }
     public List<QuoteNote>? Notes { get; set; }
 }
