@@ -64,7 +64,11 @@ public class QuoteService(CampoverdeDbContext dbContext,
             }
             await _dbContext.SaveChangesAsync();
 
-            _mailService.SendMail("sifa1258@gmail.com", "", "Quote creation", "Test quote create");
+            _mailService.SendMail(quote.Customer.Email,
+                "sifat1258@gmail.com",
+                "Welcome to Campoverde Car Hire",
+                quote.Customer.FirstName + " " + quote.Customer.LastName);
+
             return "Success";
         }
         catch (Exception ex)
