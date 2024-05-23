@@ -8,7 +8,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="dataTable" class="table table-bordered" style="width:100%">
+<table id="dataTable" class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -19,22 +19,22 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleSize)
-            </th>            
+            </th>           
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
-            </th>           
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuotePrice)
-            </th>            
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>           
+            </th>
+            <th>
+                @Html.DisplayName("Note")
+            </th>
             <th>
                 @Html.DisplayName("Action")
             </th>
@@ -46,7 +46,7 @@
         }
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-id="@item.Id">
                 <td>
                     @{
                         i++;
@@ -57,30 +57,48 @@
                     @Html.DisplayFor(modelItem => item.Vehicle.Model)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem =>item.Customer.FirstName)
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
                     @Html.DisplayFor(modelItem => item.Customer.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VehicleSize)
-                </td>               
+                </td>                
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDate)
-                </td>                
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.QuotePrice)
                 </td>
-               <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>                
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a href="" class="open-modal" data-bs-toggle="modal" data-bs-target="#quoteListModal">View</a>
+                </td>
+                <td>
+                    <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#statusModal">
+                        Change Status
+                    </button>
+                    <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#quoteNote">
+                       Add Note
+                    </button>
+@*                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                *@                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> 
+                    @*                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                *@
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@await Html.PartialAsync("_StatusModalPartialView")
+@await Html.PartialAsync("_QuoteNoteCreatePartialView")
+@await Html.PartialAsync("_QuoteNoteListPrtialView")
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/scripts/quoteservices/quoteindexservice.js"></script>
+}

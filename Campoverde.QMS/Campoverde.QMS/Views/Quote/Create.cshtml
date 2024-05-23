@@ -16,7 +16,7 @@
 
 <section>
     <div class="container">
-        <form class="row" asp-controller="Quote" asp-action="Create" method="post">
+        <form class="row" asp-controller="Quote" asp-action="Create" method="post" style="font-family:Catamaran">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col col-sm-8 mb-3 mb-sm-0">
                 <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
@@ -118,11 +118,11 @@
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
-                                <input asp-for=SpanishAddress type="text" class="form-control" id="spanishAddress" placeholder="Pilar de la Horadada Alicante">
+                                <input asp-for=SpanishAddress type="text" class="form-control form-control-lg" id="spanishAddress" placeholder="Pilar de la Horadada Alicante">
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label ">Spanish Address</label>
-                                <input asp-for=SpecialRequet type="text" class="form-control" id="specialRequest" placeholder="Pilar de la Horadada Alicante">
+                                <label class="form-label ">Any notes or Special requests..</label>
+                                <input asp-for=SpecialRequet type="text" class="form-control form-control-lg" id="specialRequest" placeholder="Pilar de la Horadada Alicante">
                             </div>
                             <input asp-for=QuotePrice type="number" id="quotePrice" hidden>
                             <div class="col-12 text-center">
@@ -138,7 +138,7 @@
             </div>
             <div class=" col-sm-4">
                 <div class="card p-1 mb-3 bg-body-tertiary widgetOne">
-                    <div class="card-body widgetBody">
+                    <div class="card-body widgetBody" style="font-family:Catamaran">
                         <h6>24 Hour Breakdown Recovery Number</h6>
                         <p id="boldCaterman">+34 900 101 369</p>
                         <h6>Hotline and WhatsApp</h6>
@@ -146,27 +146,27 @@
                         <h6>Useful Links</h6>
                         <p>Home || Privacy Policy || Terms of Service</p>
                         <h6>Social Media</h6>
-                        <p><a href="https://www.facebook.com/campoverdecars">Facebook</a> || 
+                        <p>
+                            <a href="https://www.facebook.com/campoverdecars">Facebook</a> ||
                             <a href="https://api.whatsapp.com/send/?phone=%2B34722677508&text&type=phone_number&app_absent=0"> Whats App</a>
                         </p>
 
                     </div>
                 </div>
                 <div class="card p-1 mb-3 bg-body-tertiary widgetTwo">
-                    <div class="card-body ">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text font-catamaran-20-1 lh-lg">
+                    <div class="card-body" style="font-family:Catamaran">
+                        <p class="card-text lh-lg">
                             <b>Quote Summary</b>
                             <br />Quote  receiver: <span id="receiver"></span>
                             <br />Phone: <span id="qPhone"></span>
                             <br>Email: <span id="qEmail"></span>
                             <br>Vehicle: <span id="qVehicle"></span>
-                            <br>Transmission: N/A
+                            <br>Transmission: <span id="qVehicleType"></span>
                             <br>From: <span id="qFromDate"> </span> To <span id="qToDate"></span>
                             <hr />
-                        <p class="text-center catamaran">Estimated Quote Price</p>
-                        <p class="text-center catamaran">$ <span id="price"></span> </p>
-                        <p class="text-center catamaran">
+                        <p class="text-center" style="font-weight:700;font-size:20px;">Estimated Quote Price</p>
+                        <p class="text-center" style="font-weight:800;font-size:64px;font-family:Catamaran">$ <span id="price"></span> </p>
+                        <p class="text-center">
                             This is an approximate price based on your input,
                             <br />
                             it is subject to vary on different aspects
@@ -177,102 +177,11 @@
         </form>
     </div>
 </section>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#firstName').on('input', updateFullName);
-        $('#lastName').on('input', updateFullName);
 
-        function updateFullName() {
-            var firstName = $('#firstName').val();
-            var lastName = $('#lastName').val();
-            $('#receiver').text(firstName + ' ' + lastName);
-        }
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");       
+    }
+    <script src="~/scripts/quoteservices/quotecreateservice.js"></script>
+}
 
-        $('#email').on('input', function () {
-            var email = $('#email').val();
-            $('#qEmail').text(email);
-        });
-
-        $('#phone').on('input', function () {
-            var phone = $('#phone').val();
-            $('#qPhone').text(phone);
-        });
-
-        $('#startDate').change(function () {
-            var startDate = $('#startDate').val();
-            $('#qFromDate').text(startDate);
-        });
-
-        $('#endDate').change(function () {
-            var endDate = $('#endDate').val();
-            $('#qToDate').text(endDate);
-        });
-
-       
-
-        $('#vehicle, #startDate, #endDate').change(function () {
-            var vehicleModelId = $('#vehicle').val();
-            var startDate = new Date($('#startDate').val());
-            var endDate = new Date($('#endDate').val());
-
-            if (vehicleModelId && startDate && endDate) {
-                calculatePrice();
-                GetVehicleModel();
-            }
-        });
-
-        function calculatePrice() {
-
-            var vehicleModelId = $('#vehicle').val();
-            var startDate = new Date($('#startDate').val());
-            var endDate = new Date($('#endDate').val());
-
-            $.ajax({
-                url: '/Quote/GetPrice',
-                type: 'GET',
-                data: { vehicleModelId: vehicleModelId },
-                success: function (response) {
-
-                    if (response !== null) {
-                        var price = response;
-                        var hoursDifference = Math.abs(startDate - endDate) / 36e5; // Convert milliseconds to hours
-                        var totalPrice = price * hoursDifference;
-                        $('#price').text('Total Price: ' + totalPrice.toFixed(2));
-                        $('#quotePrice').val(totalPrice.toFixed(2));
-                    } else {
-                        $('#price').text('Price not available');
-                    }
-                },
-                error: function () {
-                    $('#price').text('Error occurred');
-                }
-            });
-        }
-        function GetVehicleModel() {
-
-            var vehicleModelId = $('#vehicle').val();           
-
-            $.ajax({
-                url: '/Quote/GetModel',
-                type: 'GET',
-                data: { vehicleModelId: vehicleModelId },
-                success: function (response) {
-
-                    if (response !== null) {
-                        var vehicleModel = response;
-                        
-                        $('#qVehicle').text(vehicleModel);
-                    } else {
-                        $('#qVehicle').text('');
-                    }
-                },
-                error: function () {
-                    $('#qVehicle').text('Error occurred');
-                }
-            });
-        }
-    });
-
-</script>
