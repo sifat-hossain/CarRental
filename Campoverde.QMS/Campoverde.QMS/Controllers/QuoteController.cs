@@ -189,9 +189,9 @@ namespace Campoverde.QMS.Controllers
                 quote.Status = status;
                 _context.Update(quote);
                 _context.SaveChanges();
-                return Json(true);
+                return Json("Status successfully updated");
             }
-            return Json(null);
+            return Json("Failed to update the status");
         }
     }
 }

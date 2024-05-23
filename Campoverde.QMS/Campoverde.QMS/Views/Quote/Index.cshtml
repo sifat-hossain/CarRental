@@ -8,7 +8,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="dataTable" class="table table-bordered" style="width:100%">
+<table id="dataTable" class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -19,10 +19,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleSize)
-            </th>
+            </th>           
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
@@ -34,6 +31,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayName("Note")
             </th>
             <th>
                 @Html.DisplayName("Action")
@@ -59,10 +59,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Customer.FirstName)
                     @Html.DisplayFor(modelItem => item.Customer.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VehicleSize)
-                </td>
+                </td>                
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
@@ -76,11 +73,17 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a href="">View</a>
+                </td>
+                <td>
+                    <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#statusModal">
                         Change Status
-                    </button> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    </button>
+                    <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#quoteNote">
+                       Add Note
+                    </button>
+@*                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                *@                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> 
                     @*                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 *@
                 </td>
@@ -89,72 +92,12 @@
     </tbody>
 </table>
 
+@await Html.PartialAsync("_StatusModalPartialView")
+@await Html.PartialAsync("_QuoteNoteCreatePartialView")
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Change Status of Quote</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group col-md-12">
-                    <div class="mb-4">
-                        <label class="control-label"></label>
-                        <select id="status" class="form-control form-select">
-                            <option value="0">New</option>
-                            <option value="1">Contacted</option>
-                            <option value="2">NotInterested</option>
-                            <option value="3">Rented</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-
-    $(document).ready(function () {
-        
-        let selectedRowId;
-
-        $('.open-modal').on('click', function () {
-            debugger;
-            selectedRowId = $(this).closest('tr').data('id');
-        });
-        $('#saveButton').on('click', function () {
-            debugger;
-            let selectedValue = $('#status').val();
-
-            $.ajax({
-                url: '/Quote/ChangeStatus',
-                type: 'POST',
-                data: {
-                    quoteId: selectedRowId,
-                    status: selectedValue
-                },
-                success: function (response) {
-                    // handle success
-                    alert('Quote status successfully updated');
-                    $('#exampleModal').modal('hide');
-                },
-                error: function (error) {
-                    // handle error
-                    alert('An error occurred');
-                }
-            });
-        });
-    })
-   
-</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/scripts/quoteservices/quoteindexservice.js"></script>
+}
