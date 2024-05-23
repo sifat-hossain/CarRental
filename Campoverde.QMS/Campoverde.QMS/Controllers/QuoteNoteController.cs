@@ -27,5 +27,12 @@
             }
             return Json(false);
         }
+
+        [HttpGet]
+        public JsonResult GetQuoteNotes(int quoteId)
+        {
+            List<QuoteNote> quoteNote = [.. _dbContext.QuoteNote.Where(x => x.QuoteId == quoteId)];
+            return Json(quoteNote);
+        }
     }
 }

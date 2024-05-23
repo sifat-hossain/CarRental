@@ -73,7 +73,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a href="">View</a>
+                    <a href="" class="open-modal" data-bs-toggle="modal" data-bs-target="#quoteListModal">View</a>
                 </td>
                 <td>
                     <button class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#statusModal">
@@ -94,6 +94,7 @@
 
 @await Html.PartialAsync("_StatusModalPartialView")
 @await Html.PartialAsync("_QuoteNoteCreatePartialView")
+@await Html.PartialAsync("_QuoteNoteListPrtialView")
 
 @section Scripts {
     @{

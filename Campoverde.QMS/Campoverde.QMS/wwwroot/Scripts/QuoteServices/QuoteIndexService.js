@@ -72,4 +72,32 @@
             }
         });
     });
+
+    $('#quoteNotesTable tbody').empty();
+
+    $('.open-modal').on('click', function () {
+        var quoteId = $(this).closest('tr').data('id');
+   
+    // Make an AJAX call to get the quote notes
+    $.ajax({
+        url: '/QuoteNote/GetQuoteNotes',
+        type: 'GET',
+        data: {
+            quoteId: quoteId
+        },
+        
+        success: function (response) {
+            debugger;
+            // Populate the table with the received data
+            response.forEach(function (note) {
+                $('#quoteNotesTable tbody').append(
+                    '<tr><td>' + note.notes + '</td></tr>'
+                );
+            });
+        },
+        error: function (error) {
+            alert('An error occurred while fetching the notes');
+        }
+    });
+    });
 })
