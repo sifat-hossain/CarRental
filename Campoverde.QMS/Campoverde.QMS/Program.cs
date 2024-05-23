@@ -1,9 +1,22 @@
 using Campoverde.QMS.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Index";
+        options.LogoutPath = "/Login/Logout";
+    });
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"))
+    .AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<CampoverdeDbContext>(option =>
 option.UseNpgsql(builder.Configuration.GetConnectionString("campoverdeDbConnection")));
 

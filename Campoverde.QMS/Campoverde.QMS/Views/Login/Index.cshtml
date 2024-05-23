@@ -1,0 +1,30 @@
+﻿@using Campoverde.QMS.ViewModel
+@model LoginViewModel
+
+<section>
+    <div class="container">
+        <div class="col col-sm-8 mb-3 mb-sm-0">
+            <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
+                <div class="card-body ">
+                    <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
+                    <div class="row g-3">
+                        <form asp-action="Index" method="post">
+                            <div class="form-group">
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

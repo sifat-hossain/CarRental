@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Campoverde.QMS.Controllers
 {
@@ -7,6 +8,7 @@ namespace Campoverde.QMS.Controllers
         private readonly CampoverdeDbContext _context = context;
         private readonly IQuoteService _quoteService = quoteService;
 
+        [Authorize(Roles = "Admin")]
         // GET: Quotes
         public async Task<IActionResult> Index()
         {
@@ -14,6 +16,7 @@ namespace Campoverde.QMS.Controllers
             return View(await campoverdeDbContext.ToListAsync());
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Quotes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -59,6 +62,7 @@ namespace Campoverde.QMS.Controllers
             return View(quote);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Quotes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,6 +118,7 @@ namespace Campoverde.QMS.Controllers
             return View(quote);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Quotes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

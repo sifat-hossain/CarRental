@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Campoverde.QMS.Common;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Campoverde.QMS.Controllers
 {
@@ -50,6 +51,7 @@ namespace Campoverde.QMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Password = PasswordEncryption.HashPassword(user.Password);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
