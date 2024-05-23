@@ -25,11 +25,11 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputEmail4" class="form-label">First Name</label>
-                                <input type="text" class="form-control" asp-for=Customer.FirstName id="firstName">
+                                <input type="text" class="form-control" asp-for=Customer.FirstName id="firstName" placeholder="ex: John Smith">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputPassword4" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" asp-for=Customer.LastName id="lastName">
+                                <input type="text" class="form-control" asp-for=Customer.LastName id="lastName" placeholder="ex: John Smith">
                             </div>
                             <div class="col-md-6">
                                 <label for="inputAddress" class="form-label">Email</label>
@@ -41,12 +41,12 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCity" class="form-label">Nationality</label>
-                                <input type="text" class="form-control" id="inputCity">
+                                <input type="text" class="form-control" id="inputCity" placeholder="British">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Age</label>
                                 <select asp-for=Customer.Age id="age" class="form-control form-select">
-                                    <option selected>Choose...</option>
+                                    <option selected>Select Age</option>
                                     <option value="1">One year</option>
                                     <option value="2">Two Years</option>
 
@@ -55,7 +55,7 @@
                             <div class="col-md-3">
                                 <label class="form-label">Gender</label>
                                 <select asp-for=Customer.Gender id="gender" class="form-control form-select">
-                                    <option selected>Choose...</option>
+                                    <option selected>Select Gender</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
                                     <option value="3">Other</option>
@@ -65,7 +65,7 @@
                             <div class="col-md-6" id="userAccount">
                                 <label class="col-form-label ">Do you want user account?</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" value="yes">
+                                    <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" value="yes" checked>
                                     <label class="form-check-label " for="inlineRadioUserAccountYes">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -78,15 +78,15 @@
                         <h5 class="card-title text-left  mt-3 pb-3">Quote Requirement</h5>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label ">Vehicle Model|Year|Class</label>
+                                <label class="form-label ">Vehicle Model | Year | Class</label>
                                 <select asp-for=VehicleId asp-items="ViewBag.VehicleId" id="vehicle" class="form-control form-select">
-                                    <option selected>Choose Vehicle...</option>
+                                    <option selected>Select Vehicle...</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Size</label>
                                 <select asp-for=VehicleSize id="vehicleSize" class="form-control form-select">
-                                    <option selected>Choose Vehicle...</option>
+                                    <option selected>Select Vehicle...</option>
                                     <option value="0">Small</option>
                                     <option value="1">Lerge</option>
                                     <option value="2">Medium</option>
@@ -95,7 +95,7 @@
                             <div class="col-md-6">
                                 <label class="form-label ">Passengers / Guest Counts</label>
                                 <select asp-for=PassengerCount id="passengerCount" class="form-control form-select">
-                                    <option selected>Choose Vehicle...</option>
+                                    <option selected>Select Vehicle...</option>
                                     <option value="1">4 Persons</option>
                                     <option value="2">6 Persons</option>
                                 </select>
@@ -103,26 +103,26 @@
                             <div class="col-md-6">
                                 <label class="form-label ">Vehicle Type</label>
                                 <select asp-for=VehicleType id="vehicleType" class="form-control form-select">
-                                    <option selected>Choose Vehicle Type...</option>
+                                    <option selected>Select Vehicle Type...</option>
                                     <option value="0">Manual</option>
                                     <option value="1">Automatic</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
-                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:yyyy-MM-ddTHH:mm}">
+                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Return (End Date time)</label>
-                                <input asp-for=EndDate asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" id="endDate">
+                                <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
-                                <input asp-for=SpanishAddress type="text" class="form-control" id="spanishAddress">
+                                <input asp-for=SpanishAddress type="text" class="form-control" id="spanishAddress" placeholder="Pilar de la Horadada Alicante">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
-                                <input asp-for=SpecialRequet type="text" class="form-control" id="specialRequest">
+                                <input asp-for=SpecialRequet type="text" class="form-control" id="specialRequest" placeholder="Pilar de la Horadada Alicante">
                             </div>
                             <input asp-for=QuotePrice type="number" id="quotePrice" hidden>
                             <div class="col-12 text-center">
@@ -146,7 +146,9 @@
                         <h6>Useful Links</h6>
                         <p>Home || Privacy Policy || Terms of Service</p>
                         <h6>Social Media</h6>
-                        <p>Facebook || Whats App</p>
+                        <p><a href="https://www.facebook.com/campoverdecars">Facebook</a> || 
+                            <a href="https://api.whatsapp.com/send/?phone=%2B34722677508&text&type=phone_number&app_absent=0"> Whats App</a>
+                        </p>
 
                     </div>
                 </div>
@@ -158,7 +160,6 @@
                             <br />Quote  receiver: <span id="receiver"></span>
                             <br />Phone: <span id="qPhone"></span>
                             <br>Email: <span id="qEmail"></span>
-                            <br>Insurance: N/A
                             <br>Vehicle: <span id="qVehicle"></span>
                             <br>Transmission: N/A
                             <br>From: <span id="qFromDate"> </span> To <span id="qToDate"></span>

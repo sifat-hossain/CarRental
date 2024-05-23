@@ -12,10 +12,10 @@ public class Quote : BaseEntity
     public VehicleTypeEnum VehicleType { get; set; }
     public PassengerCountEnum PassengerCount { get; set; }
 
-    [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyy : htt}", ApplyFormatInEditMode = true)]
     public DateTime StartDate { get; set; }
 
-    [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyy : htt}", ApplyFormatInEditMode = true)]
     public DateTime EndDate { get; set; }
     public string SpanishAddress { get; set; }
     public string SpecialRequet { get; set; }
