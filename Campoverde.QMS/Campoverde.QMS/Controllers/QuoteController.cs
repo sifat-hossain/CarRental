@@ -179,5 +179,19 @@ namespace Campoverde.QMS.Controllers
             }
             return Json(null);
         }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(int quoteId, QuoteStatusEnum status)
+        {
+            var quote = _context.Quote.Where(q => q.Id == quoteId).FirstOrDefault();
+            if (quote != null)
+            {
+                quote.Status = status;
+                _context.Update(quote);
+                _context.SaveChanges();
+                return Json(true);
+            }
+            return Json(null);
+        }
     }
 }
