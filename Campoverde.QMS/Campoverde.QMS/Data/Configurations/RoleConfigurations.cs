@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Campoverde.QMS.Data.Configurations;
 
@@ -14,5 +12,10 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
 
         builder.Property(x => x.Id)
             .UseIdentityColumn();
+
+        builder.HasData(new[]
+         {
+            new Role {  Name = "Admin", IsActive=true,IsDeleted=false },
+            });
     }
 }

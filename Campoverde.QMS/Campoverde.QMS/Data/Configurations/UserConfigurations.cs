@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Campoverde.QMS.Data.Configurations;
 
@@ -18,5 +16,10 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
         builder.HasOne(b => b.Role)
             .WithMany(r => r.Users)
             .HasForeignKey(b => b.RoleId);
+
+        builder.HasData(new[]
+          {
+            new User {  Email = "Admin",Password="ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", IsActive=true,IsDeleted=false,RoleId=1 },
+            });
     }
 }

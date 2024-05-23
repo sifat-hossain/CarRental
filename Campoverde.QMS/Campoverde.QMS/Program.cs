@@ -18,7 +18,7 @@ builder.Services.AddAuthorizationBuilder()
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<CampoverdeDbContext>(option =>
-option.UseNpgsql(builder.Configuration.GetConnectionString("campoverdeDbConnection")));
+option.UseSqlServer(builder.Configuration.GetConnectionString("campoverdeDbConnection")));
 
 // Depency inject
 builder.Services.AddScoped<IVehicle, VehicleService>();
