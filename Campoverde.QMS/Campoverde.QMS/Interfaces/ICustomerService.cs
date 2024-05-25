@@ -2,5 +2,5 @@
 
 public interface ICustomerService
 {
-    Task<int> CreateCustomerAsync(Customer customer);
+    Task<Guid> CreateCustomerAsync(Customer customer);
 }

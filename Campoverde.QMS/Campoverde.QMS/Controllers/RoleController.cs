@@ -17,7 +17,7 @@ public class RoleController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Roles/Details/5
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(Guid? id)
     {
         if (id == null)
         {
@@ -79,7 +79,7 @@ public class RoleController(CampoverdeDbContext context) : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Name,Id,IsDeleted,IsActive")] Role role)
+    public async Task<IActionResult> Edit(Guid id, [Bind("Name,Id,IsDeleted,IsActive")] Role role)
     {
         if (id != role.Id)
         {
@@ -110,7 +110,7 @@ public class RoleController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Roles/Delete/5
-    public async Task<IActionResult> Delete(int? id)
+    public async Task<IActionResult> Delete(Guid? id)
     {
         if (id == null)
         {
@@ -143,7 +143,7 @@ public class RoleController(CampoverdeDbContext context) : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private bool RoleExists(int id)
+    private bool RoleExists(Guid id)
     {
         return _context.Role.Any(e => e.Id == id);
     }

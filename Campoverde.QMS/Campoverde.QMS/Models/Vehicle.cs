@@ -1,4 +1,6 @@
-﻿namespace Campoverde.QMS.Models;
+﻿using Campoverde.QMS.Common;
+
+namespace Campoverde.QMS.Models;
 
 public class Vehicle : BaseEntity
 {

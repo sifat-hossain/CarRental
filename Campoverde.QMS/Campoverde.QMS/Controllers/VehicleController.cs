@@ -14,7 +14,7 @@ public class VehicleController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Vehicle/Details/5
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(Guid? id)
     {
         if (id == null)
         {
@@ -74,7 +74,7 @@ public class VehicleController(CampoverdeDbContext context) : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Model,Price,Id,IsDeleted,IsActive")] Vehicle vehicle)
+    public async Task<IActionResult> Edit(Guid id, [Bind("Model,Price,Id,IsDeleted,IsActive")] Vehicle vehicle)
     {
         if (id != vehicle.Id)
         {
@@ -105,7 +105,7 @@ public class VehicleController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Vehicle/Delete/5
-    public async Task<IActionResult> Delete(int? id)
+    public async Task<IActionResult> Delete(Guid? id)
     {
         if (id == null)
         {
@@ -137,7 +137,7 @@ public class VehicleController(CampoverdeDbContext context) : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private bool VehicleExists(int id)
+    private bool VehicleExists(Guid id)
     {
         return _context.Vehicle.Any(e => e.Id == id);
     }

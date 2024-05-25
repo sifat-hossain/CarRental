@@ -3,12 +3,12 @@
 public class CustomerService(CampoverdeDbContext dbContext) : ICustomerService
 {
     private readonly CampoverdeDbContext _dbContext = dbContext;
-    public async Task<int> CreateCustomerAsync(Customer customer)
+    public async Task<Guid> CreateCustomerAsync(Customer customer)
     {
         var dbitem = await _dbContext.Customer
             .Where(c => c.Email == customer.Email)
             .FirstOrDefaultAsync();
-        if (dbitem == null && customer != null && customer.Id <= 0)
+        if (dbitem == null && customer.Id == Guid.Empty)
         {
             customer.IsActive = true;
             customer.IsDeleted = false;

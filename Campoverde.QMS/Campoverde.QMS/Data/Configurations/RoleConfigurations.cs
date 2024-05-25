@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace Campoverde.QMS.Data.Configurations;
+﻿namespace Campoverde.QMS.Data.Configurations;
 
 public class RoleConfigurations : IEntityTypeConfiguration<Role>
 {
@@ -11,11 +9,23 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
-            .UseIdentityColumn();
+            .HasDefaultValueSql("NEWID()");
+
+        builder.Property(b => b.IsDeleted)
+          .HasDefaultValue(false);
+
+        builder.Property(b => b.IsActive)
+            .HasDefaultValue(true);
 
         builder.HasData(
          [
-             new Role { Name = "Admin", IsActive = true, IsDeleted = false }
+             new Role
+             {
+                 Id = Guid.Parse("98b22fa3-6666-41ad-b4d6-9726c7aa414a"),
+                 Name = "Admin",
+                 IsActive = true,
+                 IsDeleted = false
+             }
              ]);
     }
 }

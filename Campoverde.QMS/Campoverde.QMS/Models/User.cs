@@ -9,7 +9,7 @@ namespace Campoverde.QMS.Models
 
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         public Role? Role { get; set; }
     }
 }

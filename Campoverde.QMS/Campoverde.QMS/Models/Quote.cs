@@ -4,9 +4,9 @@ namespace Campoverde.QMS.Models;
 
 public class Quote : BaseEntity
 {
-    public int VehicleId { get; set; }
+    public Guid VehicleId { get; set; }
     public Vehicle? Vehicle { get; set; }
-    public int CustomerId { get; set; }
+    public Guid CustomerId { get; set; }
     public Customer? Customer { get; set; }
     public VehicleSizeEnum VehicleSize { get; set; }
     public VehicleTypeEnum VehicleType { get; set; }
