@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Campoverde.QMS.Data.Migrations
+namespace Campoverde.QMS.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "Customer",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -31,8 +30,8 @@ namespace Campoverde.QMS.Data.Migrations
                     SecondaryDrivingLicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LicenseExpiryDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DriverPassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -43,11 +42,10 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "Role",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -58,12 +56,11 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "Vehicle",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(9,2)", precision: 9, scale: 2, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -74,14 +71,13 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -98,10 +94,9 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "Quote",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     VehicleSize = table.Column<int>(type: "int", nullable: false),
                     VehicleType = table.Column<int>(type: "int", nullable: false),
                     PassengerCount = table.Column<int>(type: "int", nullable: false),
@@ -109,12 +104,12 @@ namespace Campoverde.QMS.Data.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SpanishAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SpecialRequet = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuotePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    QuotePrice = table.Column<decimal>(type: "decimal(9,2)", precision: 9, scale: 2, nullable: false),
                     LastUpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedByUser = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -137,12 +132,11 @@ namespace Campoverde.QMS.Data.Migrations
                 name: "QuoteNote",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuoteId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    QuoteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -154,6 +148,21 @@ namespace Campoverde.QMS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Role",
+                columns: new[] { "Id", "IsActive", "Name" },
+                values: new object[] { new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a"), true, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Vehicle",
+                columns: new[] { "Id", "IsActive", "Model", "Price" },
+                values: new object[] { new Guid("056ac989-5eb4-4f07-8630-069098584cfe"), true, "BMW Luxery", 500m });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Email", "IsActive", "Password", "Phone", "RoleId" },
+                values: new object[] { new Guid("f220d2ea-fec4-4d80-8a86-ff1ba10d3acd"), "Admin", true, "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", "0123456789", new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Quote_CustomerId",

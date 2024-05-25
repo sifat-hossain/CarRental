@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Campoverde.QMS.Data.Migrations
+namespace Campoverde.QMS.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
     partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
@@ -24,11 +24,10 @@ namespace Campoverde.QMS.Data.Migrations
 
             modelBuilder.Entity("Campoverde.QMS.Models.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -52,10 +51,14 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -80,28 +83,31 @@ namespace Campoverde.QMS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Quote", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<DateTime>("LastUpdatedByUser")
                         .HasColumnType("datetime2");
@@ -113,7 +119,8 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("QuotePrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<string>("SpanishAddress")
                         .IsRequired()
@@ -129,8 +136,8 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("VehicleSize")
                         .HasColumnType("int");
@@ -144,50 +151,56 @@ namespace Campoverde.QMS.Data.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Quote");
+                    b.ToTable("Quote", (string)null);
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.QuoteNote", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuoteId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("QuoteId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("QuoteId");
 
-                    b.ToTable("QuoteNote");
+                    b.ToTable("QuoteNote", (string)null);
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Role", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -195,26 +208,38 @@ namespace Campoverde.QMS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -224,40 +249,66 @@ namespace Campoverde.QMS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f220d2ea-fec4-4d80-8a86-ff1ba10d3acd"),
+                            Email = "Admin",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Password = "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh",
+                            Phone = "0123456789",
+                            RoleId = new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a")
+                        });
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Vehicle", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicle", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("056ac989-5eb4-4f07-8630-069098584cfe"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Model = "BMW Luxery",
+                            Price = 500m
+                        });
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Quote", b =>
