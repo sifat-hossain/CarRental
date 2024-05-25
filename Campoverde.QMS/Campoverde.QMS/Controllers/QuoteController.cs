@@ -55,11 +55,16 @@ namespace Campoverde.QMS.Controllers
             if (ModelState.IsValid)
             {
                 await _quoteService.CreateQuoteAsync(quote);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Confirmation));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customer, "Id", "FirstName", quote.CustomerId);
             ViewData["VehicleId"] = new SelectList(_context.Vehicle, "Id", "Model", quote.VehicleId);
             return View(quote);
+        }
+
+        public IActionResult Confirmation()
+        {
+            return View();
         }
 
         [Authorize(Roles = "Admin")]

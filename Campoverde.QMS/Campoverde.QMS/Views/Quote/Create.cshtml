@@ -47,8 +47,10 @@
                                 <label class="form-label">Age</label>
                                 <select asp-for=Customer.Age id="age" class="form-control form-select">
                                     <option selected>Select Age</option>
-                                    <option value="1">One year</option>
-                                    <option value="2">Two Years</option>
+                                    @for (int age = 18; age <= 100; age++)
+                                    {
+                                        <option value="@age">I am @age years old</option>
+                                    }
 
                                 </select>
                             </div>
