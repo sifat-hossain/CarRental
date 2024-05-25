@@ -17,9 +17,9 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
             .WithMany(r => r.Users)
             .HasForeignKey(b => b.RoleId);
 
-        builder.HasData(new[]
-          {
-            new User {  Email = "Admin",Password="ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", IsActive=true,IsDeleted=false,RoleId=1 },
-            });
+        builder.HasData(
+          [
+              new User { Email = "Admin", Password = "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", IsActive = true, IsDeleted = false, RoleId = 1 }
+              ]);
     }
 }

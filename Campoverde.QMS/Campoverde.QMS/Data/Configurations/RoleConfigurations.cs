@@ -13,9 +13,9 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
         builder.Property(x => x.Id)
             .UseIdentityColumn();
 
-        builder.HasData(new[]
-         {
-            new Role {  Name = "Admin", IsActive=true,IsDeleted=false },
-            });
+        builder.HasData(
+         [
+             new Role { Name = "Admin", IsActive = true, IsDeleted = false }
+             ]);
     }
 }
