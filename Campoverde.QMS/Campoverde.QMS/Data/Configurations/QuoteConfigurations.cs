@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Campoverde.QMS.Common.Constants;
 
 namespace Campoverde.QMS.Data.Configurations;
 
@@ -13,7 +11,16 @@ public class QuoteConfigurations : IEntityTypeConfiguration<Quote>
         builder.HasKey(b => b.Id);
 
         builder.Property(b => b.Id)
-            .UseIdentityColumn();
+            .HasDefaultValueSql("NEWID()");
+
+        builder.Property(b => b.IsDeleted)
+          .HasDefaultValue(false);
+
+        builder.Property(b => b.IsActive)
+            .HasDefaultValue(true);
+
+        builder.Property(b => b.QuotePrice)
+            .HasColumnType(Constants.Precision.Decimal);
 
         builder.HasOne(c => c.Customer)
             .WithMany(q => q.Quotes)

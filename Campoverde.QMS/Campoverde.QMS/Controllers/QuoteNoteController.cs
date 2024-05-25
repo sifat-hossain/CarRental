@@ -9,11 +9,11 @@
         }
 
         [HttpPost]
-        public JsonResult CreateNote(int quoteId, string quoteNote)
+        public JsonResult CreateNote(Guid quoteId, string quoteNote)
         {
-            if (quoteId > 0 && !string.IsNullOrWhiteSpace(quoteNote))
+            if (quoteId != Guid.Empty && !string.IsNullOrWhiteSpace(quoteNote))
             {
-                QuoteNote note = new QuoteNote
+                QuoteNote note = new()
                 {
                     QuoteId = quoteId,
                     Notes = quoteNote,
@@ -29,7 +29,7 @@
         }
 
         [HttpGet]
-        public JsonResult GetQuoteNotes(int quoteId)
+        public JsonResult GetQuoteNotes(Guid quoteId)
         {
             List<QuoteNote> quoteNote = [.. _dbContext.QuoteNote.Where(x => x.QuoteId == quoteId)];
             return Json(quoteNote);

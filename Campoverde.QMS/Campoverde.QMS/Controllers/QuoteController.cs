@@ -18,7 +18,7 @@ namespace Campoverde.QMS.Controllers
 
         [Authorize(Roles = "Admin")]
         // GET: Quotes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace Campoverde.QMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VehicleId,CustomerId,VehicleSize,VehicleType,PassengerCount,StartDate,EndDate,SpanishAddress,SpecialRequet,QuotePrice,LastUpdatedTime,LastUpdatedByUser,Status,Id,IsDeleted,IsActive")] Quote quote)
+        public async Task<IActionResult> Edit(Guid id, [Bind("VehicleId,CustomerId,VehicleSize,VehicleType,PassengerCount,StartDate,EndDate,SpanishAddress,SpecialRequet,QuotePrice,LastUpdatedTime,LastUpdatedByUser,Status,Id,IsDeleted,IsActive")] Quote quote)
         {
             if (id != quote.Id)
             {
@@ -120,7 +120,7 @@ namespace Campoverde.QMS.Controllers
 
         [Authorize(Roles = "Admin")]
         // GET: Quotes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
@@ -154,13 +154,13 @@ namespace Campoverde.QMS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool QuoteExists(int id)
+        private bool QuoteExists(Guid id)
         {
             return _context.Quote.Any(e => e.Id == id);
         }
 
         [HttpGet]
-        public JsonResult GetPrice(int vehicleModelId)
+        public JsonResult GetPrice(Guid vehicleModelId)
         {
 
             var vehicleModel = _context.Vehicle.FirstOrDefault(vm => vm.Id == vehicleModelId);
@@ -174,7 +174,7 @@ namespace Campoverde.QMS.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetModel(int vehicleModelId)
+        public JsonResult GetModel(Guid vehicleModelId)
         {
             var vehicleModel = _context.Vehicle.FirstOrDefault(vm => vm.Id == vehicleModelId);
 
@@ -186,7 +186,7 @@ namespace Campoverde.QMS.Controllers
         }
 
         [HttpPost]
-        public JsonResult ChangeStatus(int quoteId, QuoteStatusEnum status)
+        public JsonResult ChangeStatus(Guid quoteId, QuoteStatusEnum status)
         {
             var quote = _context.Quote.Where(q => q.Id == quoteId).FirstOrDefault();
             if (quote != null)

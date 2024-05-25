@@ -1,5 +1,4 @@
-﻿
-namespace Campoverde.QMS.Models;
+﻿namespace Campoverde.QMS.Models;
 
 public class Customer : BaseEntity
 {

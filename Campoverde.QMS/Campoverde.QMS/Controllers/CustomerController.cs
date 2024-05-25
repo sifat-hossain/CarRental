@@ -15,7 +15,7 @@ public class CustomerController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Customer/Details/5
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(Guid? id)
     {
         if (id == null)
         {
@@ -75,7 +75,7 @@ public class CustomerController(CampoverdeDbContext context) : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("FirstName,LastName,Email,Phone,HomeAddress,SpanishAddress,DriverName,PrimaryDrivingLicenceNumber,SecondaryDrivingLicenseNumber,LicenseExpiryDate,DriverPassportNumber,Id,IsDeleted,IsActive")] Customer customer)
+    public async Task<IActionResult> Edit(Guid id, [Bind("FirstName,LastName,Email,Phone,HomeAddress,SpanishAddress,DriverName,PrimaryDrivingLicenceNumber,SecondaryDrivingLicenseNumber,LicenseExpiryDate,DriverPassportNumber,Id,IsDeleted,IsActive")] Customer customer)
     {
         if (id != customer.Id)
         {
@@ -106,7 +106,7 @@ public class CustomerController(CampoverdeDbContext context) : Controller
     }
 
     // GET: Customer/Delete/5
-    public async Task<IActionResult> Delete(int? id)
+    public async Task<IActionResult> Delete(Guid? id)
     {
         if (id == null)
         {
@@ -138,7 +138,7 @@ public class CustomerController(CampoverdeDbContext context) : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private bool CustomerExists(int id)
+    private bool CustomerExists(Guid id)
     {
         return _context.Customer.Any(e => e.Id == id);
     }
