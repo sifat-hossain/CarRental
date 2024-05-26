@@ -4,16 +4,24 @@ using Campoverde.QMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Campoverde.QMS.Data.Migrations
+namespace Campoverde.QMS.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
+<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.Designer.cs
+    [Migration("20240525170216_InitialMigration")]
+    partial class InitialMigration
+========
+    [Migration("20240525193406_initial")]
+    partial class initial
+>>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.Designer.cs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,6 +307,8 @@ namespace Campoverde.QMS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicle", (string)null);
+<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.Designer.cs
+========
 
                     b.HasData(
                         new
@@ -309,6 +319,7 @@ namespace Campoverde.QMS.Data.Migrations
                             Model = "BMW Luxery",
                             Price = 500m
                         });
+>>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.Designer.cs
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Quote", b =>
