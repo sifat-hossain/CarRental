@@ -9,16 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Campoverde.QMS.Migrations
+namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.Designer.cs
-    [Migration("20240525170216_InitialMigration")]
-    partial class InitialMigration
-========
-    [Migration("20240525193406_initial")]
-    partial class initial
->>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.Designer.cs
+    [Migration("20240526061803_AddDefaultUsers")]
+    partial class AddDefaultUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -225,6 +220,13 @@ namespace Campoverde.QMS.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("722901c9-31f4-486a-ae1c-058d6da261da"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "User"
                         });
                 });
 
@@ -273,9 +275,19 @@ namespace Campoverde.QMS.Migrations
                             Email = "Admin",
                             IsActive = true,
                             IsDeleted = false,
-                            Password = "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh",
+                            Password = "Tta68KjQB9cHtfsDxpQC0YigXpuJ/1IXk3z+LIejRSl/2vmIRoQp38wBs/U5E/Z4",
                             Phone = "0123456789",
                             RoleId = new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a")
+                        },
+                        new
+                        {
+                            Id = new Guid("e795266a-2e1f-4943-b878-21ae1bb5ebd4"),
+                            Email = "user",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Password = "uTJndqPRWOmM2JsDYQ6ORQCpVkiozdlDFcWV06VV0Wz7guIzG4S3Wa4gJGe7Yo9x",
+                            Phone = "0123456789",
+                            RoleId = new Guid("722901c9-31f4-486a-ae1c-058d6da261da")
                         });
                 });
 
@@ -307,8 +319,6 @@ namespace Campoverde.QMS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicle", (string)null);
-<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.Designer.cs
-========
 
                     b.HasData(
                         new
@@ -319,7 +329,6 @@ namespace Campoverde.QMS.Migrations
                             Model = "BMW Luxery",
                             Price = 500m
                         });
->>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.Designer.cs
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Quote", b =>

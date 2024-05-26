@@ -25,6 +25,13 @@ public class RoleConfigurations : IEntityTypeConfiguration<Role>
                  Name = "Admin",
                  IsActive = true,
                  IsDeleted = false
+             },
+             new Role
+             {
+                 Id = Guid.Parse("722901c9-31f4-486a-ae1c-058d6da261da"),
+                 Name = "User",
+                 IsActive = true,
+                 IsDeleted = false
              }
              ]);
     }

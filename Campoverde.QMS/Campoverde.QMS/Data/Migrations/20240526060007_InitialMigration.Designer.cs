@@ -4,16 +4,19 @@ using Campoverde.QMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Campoverde.QMS.Migrations
+namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240526060007_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

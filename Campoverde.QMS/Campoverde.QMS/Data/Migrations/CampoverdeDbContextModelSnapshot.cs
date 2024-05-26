@@ -4,7 +4,6 @@ using Campoverde.QMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    [Migration("20240525171010_SetDefaultValue")]
-    partial class SetDefaultValue
+    partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,6 +217,13 @@ namespace Campoverde.QMS.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("722901c9-31f4-486a-ae1c-058d6da261da"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "User"
                         });
                 });
 
@@ -268,9 +272,19 @@ namespace Campoverde.QMS.Data.Migrations
                             Email = "Admin",
                             IsActive = true,
                             IsDeleted = false,
-                            Password = "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh",
+                            Password = "Tta68KjQB9cHtfsDxpQC0YigXpuJ/1IXk3z+LIejRSl/2vmIRoQp38wBs/U5E/Z4",
                             Phone = "0123456789",
                             RoleId = new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a")
+                        },
+                        new
+                        {
+                            Id = new Guid("e795266a-2e1f-4943-b878-21ae1bb5ebd4"),
+                            Email = "user",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Password = "uTJndqPRWOmM2JsDYQ6ORQCpVkiozdlDFcWV06VV0Wz7guIzG4S3Wa4gJGe7Yo9x",
+                            Phone = "0123456789",
+                            RoleId = new Guid("722901c9-31f4-486a-ae1c-058d6da261da")
                         });
                 });
 

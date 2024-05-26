@@ -6,7 +6,7 @@ public class Customer : BaseEntity
     public string? LastName { get; set; }
     public string? Email { get; set; }
     public string? Phone { get; set; }
-    public AgeEnum Age { get; set; }
+    public int Age { get; set; }
     public GenderEnum Gender { get; set; }
     public string? HomeAddress { get; set; }
     public string? Nationality { get; set; }

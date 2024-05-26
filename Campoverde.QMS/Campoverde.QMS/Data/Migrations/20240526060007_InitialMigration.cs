@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Campoverde.QMS.Migrations
+namespace Campoverde.QMS.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,13 +59,8 @@ namespace Campoverde.QMS.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(9,2)", precision: 9, scale: 2, nullable: false),
-<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.cs
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-========
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
->>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.cs
                 },
                 constraints: table =>
                 {
@@ -81,13 +76,8 @@ namespace Campoverde.QMS.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.cs
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-========
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
->>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.cs
                 },
                 constraints: table =>
                 {
@@ -161,15 +151,6 @@ namespace Campoverde.QMS.Migrations
 
             migrationBuilder.InsertData(
                 table: "Role",
-<<<<<<<< HEAD:Campoverde.QMS/Campoverde.QMS/Migrations/20240525170216_InitialMigration.cs
-                columns: new[] { "Id", "IsActive", "IsDeleted", "Name" },
-                values: new object[] { new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a"), true, false, "Admin" });
-
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "Id", "Email", "IsActive", "IsDeleted", "Password", "Phone", "RoleId" },
-                values: new object[] { new Guid("f220d2ea-fec4-4d80-8a86-ff1ba10d3acd"), "Admin", true, false, "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", "0123456789", new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a") });
-========
                 columns: new[] { "Id", "IsActive", "Name" },
                 values: new object[] { new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a"), true, "Admin" });
 
@@ -182,7 +163,6 @@ namespace Campoverde.QMS.Migrations
                 table: "User",
                 columns: new[] { "Id", "Email", "IsActive", "Password", "Phone", "RoleId" },
                 values: new object[] { new Guid("f220d2ea-fec4-4d80-8a86-ff1ba10d3acd"), "Admin", true, "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh", "0123456789", new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a") });
->>>>>>>> 9f54bebcc0790efda26c68261b02744e255daaf6:Campoverde.QMS/Campoverde.QMS/Migrations/20240525193406_initial.cs
 
             migrationBuilder.CreateIndex(
                 name: "IX_Quote_CustomerId",
