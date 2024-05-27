@@ -1,10 +1,7 @@
-﻿using Campoverde.QMS.Common;
-
-namespace Campoverde.QMS.Models;
+﻿namespace Campoverde.QMS.Models;
 
 public class Vehicle : BaseEntity
 {
-    public string Model { get; set; }
-    public decimal Price { get; set; }
+    public required string Model { get; set; }
     public List<Quote>? Quotes { get; set; }
 }

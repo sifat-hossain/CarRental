@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Campoverde.QMS.Models;
+﻿namespace Campoverde.QMS.Models;
 
 public class Quote : BaseEntity
 {
@@ -17,8 +15,8 @@ public class Quote : BaseEntity
 
     [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyy : htt}", ApplyFormatInEditMode = true)]
     public DateTime EndDate { get; set; }
-    public string SpanishAddress { get; set; }
-    public string SpecialRequet { get; set; }
+    public required string SpanishAddress { get; set; }
+    public required string SpecialRequet { get; set; }
     public decimal QuotePrice { get; set; }
     public DateTime LastUpdatedTime { get; set; }
     public DateTime LastUpdatedByUser { get; set; }

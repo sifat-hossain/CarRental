@@ -172,7 +172,7 @@ namespace Campoverde.QMS.Controllers
 
             if (vehicleModel != null)
             {
-                return Json(vehicleModel.Price);
+                return Json(true);
             }
 
             return Json(null);

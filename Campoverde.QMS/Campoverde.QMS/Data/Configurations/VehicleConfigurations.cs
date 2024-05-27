@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Common.Constants;
-
-namespace Campoverde.QMS.Data.Configurations;
+﻿namespace Campoverde.QMS.Data.Configurations;
 
 public class VehicleConfigurations : IEntityTypeConfiguration<Vehicle>
 {
@@ -19,8 +17,6 @@ public class VehicleConfigurations : IEntityTypeConfiguration<Vehicle>
         builder.Property(b => b.IsActive)
             .HasDefaultValue(true);
 
-        builder.Property(c => c.Price)
-            .HasColumnType(Constants.Precision.Decimal);
         builder.HasData([
             new Vehicle
             {
@@ -28,7 +24,6 @@ public class VehicleConfigurations : IEntityTypeConfiguration<Vehicle>
                 IsActive=true,
                 IsDeleted=false,
                 Model="BMW Luxery",
-                Price=500
             }
             ]);
     }
