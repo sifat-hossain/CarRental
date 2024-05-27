@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    [Migration("20240526060007_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240527154748_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,6 +220,63 @@ namespace Campoverde.QMS.Data.Migrations
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("722901c9-31f4-486a-ae1c-058d6da261da"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "User"
+                        });
+                });
+
+            modelBuilder.Entity("Campoverde.QMS.Models.Season", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Season", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6f475b1d-4563-4744-92f3-101421938d5d"),
+                            IsActive = false,
+                            IsDeleted = false,
+                            Name = "Low Season"
+                        },
+                        new
+                        {
+                            Id = new Guid("b94a7602-3646-43cd-a5a5-2965df0c6ab5"),
+                            IsActive = false,
+                            IsDeleted = false,
+                            Name = "Mid Season"
+                        },
+                        new
+                        {
+                            Id = new Guid("c19e488d-e4d1-4433-9651-55d72c3e9662"),
+                            IsActive = false,
+                            IsDeleted = false,
+                            Name = "High Season"
                         });
                 });
 
@@ -268,9 +325,19 @@ namespace Campoverde.QMS.Data.Migrations
                             Email = "Admin",
                             IsActive = true,
                             IsDeleted = false,
-                            Password = "ANznY7pOx7UkYvETjpkmbaKbhCxwZyUJhkpDg8QRajC/yruTQ1edEYQkHxfhdUFh",
+                            Password = "Tta68KjQB9cHtfsDxpQC0YigXpuJ/1IXk3z+LIejRSl/2vmIRoQp38wBs/U5E/Z4",
                             Phone = "0123456789",
                             RoleId = new Guid("98b22fa3-6666-41ad-b4d6-9726c7aa414a")
+                        },
+                        new
+                        {
+                            Id = new Guid("e795266a-2e1f-4943-b878-21ae1bb5ebd4"),
+                            Email = "user",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Password = "uTJndqPRWOmM2JsDYQ6ORQCpVkiozdlDFcWV06VV0Wz7guIzG4S3Wa4gJGe7Yo9x",
+                            Phone = "0123456789",
+                            RoleId = new Guid("722901c9-31f4-486a-ae1c-058d6da261da")
                         });
                 });
 
@@ -295,10 +362,6 @@ namespace Campoverde.QMS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(9, 2)
-                        .HasColumnType("decimal(9,2)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Vehicle", (string)null);
@@ -309,9 +372,58 @@ namespace Campoverde.QMS.Data.Migrations
                             Id = new Guid("056ac989-5eb4-4f07-8630-069098584cfe"),
                             IsActive = true,
                             IsDeleted = false,
-                            Model = "BMW Luxery",
-                            Price = 500m
+                            Model = "Ford Ka"
+                        },
+                        new
+                        {
+                            Id = new Guid("bb4b94ca-5ad7-4a12-8857-e24c6ef04ef0"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Model = "VW Polo"
+                        },
+                        new
+                        {
+                            Id = new Guid("29dc8766-06fc-45ee-9f20-1f342555bf6e"),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Model = "Toyota Auris"
                         });
+                });
+
+            modelBuilder.Entity("Campoverde.QMS.Models.VehiclePrice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
+
+                    b.Property<Guid>("SeasonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SeasonId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("VehiclePrice", (string)null);
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.Quote", b =>
@@ -355,6 +467,25 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("Campoverde.QMS.Models.VehiclePrice", b =>
+                {
+                    b.HasOne("Campoverde.QMS.Models.Season", "Season")
+                        .WithMany("VehiclePrices")
+                        .HasForeignKey("SeasonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Campoverde.QMS.Models.Vehicle", "Vehicle")
+                        .WithMany("VehiclePrices")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Season");
+
+                    b.Navigation("Vehicle");
+                });
+
             modelBuilder.Entity("Campoverde.QMS.Models.Customer", b =>
                 {
                     b.Navigation("Quotes");
@@ -370,9 +501,16 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("Campoverde.QMS.Models.Season", b =>
+                {
+                    b.Navigation("VehiclePrices");
+                });
+
             modelBuilder.Entity("Campoverde.QMS.Models.Vehicle", b =>
                 {
                     b.Navigation("Quotes");
+
+                    b.Navigation("VehiclePrices");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Common.Constants;
-
-namespace Campoverde.QMS.Data.Configurations;
+﻿namespace Campoverde.QMS.Data.Configurations;
 
 public class QuoteConfigurations : IEntityTypeConfiguration<Quote>
 {

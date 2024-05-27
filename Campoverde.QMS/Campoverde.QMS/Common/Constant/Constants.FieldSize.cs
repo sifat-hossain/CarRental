@@ -1,4 +1,4 @@
-﻿namespace Campoverde.QMS.Common.Constants;
+﻿namespace Campoverde.QMS.Common.Constant;
 
 public static partial class Constants
 {

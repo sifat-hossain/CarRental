@@ -1,6 +1,4 @@
-﻿using Campoverde.QMS.Models;
-
-namespace Campoverde.QMS.Services;
+﻿namespace Campoverde.QMS.Services;
 
 public class VehicleService : IVehicle
 {
@@ -24,7 +22,6 @@ public class VehicleService : IVehicle
                     {
                         Id = vehicle.Id,
                         Model = vehicle.Model,
-                        Price = vehicle.Price
                     };
                     _context.Vehicle.Update(vehicleUpdate);
                 }
