@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table id="dataTable" class="table table-bordered" style="width:100%">
     <thead>
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HomeAddress)
+                @Html.DisplayName("Home Address")
             </th>
             <th>
                 @Html.DisplayName("Action")
