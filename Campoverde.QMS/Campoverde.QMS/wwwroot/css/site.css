@@ -114,3 +114,20 @@ body {
     border-color: var(--third-color); /* Change this to your desired color */
     box-shadow: var(--third-color); /* Optional: to add a shadow effect */
 }
+.login-row {
+    font-family: Catamaran;
+   
+
+}
+.loginCard {
+    background: var(--quoteBg-color);
+    max-width:500px;
+    margin-left:30%;
+    margin-top:10%;
+    padding:30px 30px 0px 30px;
+    border-radius:10px;
+    
+}
+.loginCard h3{
+    text-align:center;
+}
