@@ -1,7 +1,5 @@
-﻿using Campoverde.QMS.Common;
-using Campoverde.QMS.ViewModel;
+﻿using Campoverde.QMS.ViewModel;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
 namespace Campoverde.QMS.Controllers;
@@ -37,7 +35,8 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
 
                 var authProperties = new AuthenticationProperties
                 {
-                    IsPersistent = true
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(1) // Match the session timeout
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);

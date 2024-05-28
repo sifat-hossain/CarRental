@@ -1,28 +1,29 @@
 ﻿@using Campoverde.QMS.ViewModel
 @model LoginViewModel
 
+
 <section>
-    <div class="container">
-        <div class="col col-sm-8 mb-3 mb-sm-0">
-            <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
-                <div class="card-body ">
-                    <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
-                    <div class="row g-3">
-                        <form asp-action="Index" method="post">
-                            <div class="form-group">
-                                <label asp-for="Email"></label>
-                                <input asp-for="Email" class="form-control" />
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Password"></label>
-                                <input asp-for="Password" type="password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            <br />
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="card shadow-lg p-3 mb-5 rounded" style="max-width: 400px; width: 100%;">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-5">Sign in</h2>
+                <form asp-action="Index" method="post">
+                    <div class="mb-3">
+                        <input asp-for="Email" class="form-control" placeholder="Email" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
+                    <div class="mb-3">
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-pink">Login</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="text-center mt-2">
+                    <span>Don't have an account? <a href="#">Sign up</a></span>
                 </div>
             </div>
         </div>
