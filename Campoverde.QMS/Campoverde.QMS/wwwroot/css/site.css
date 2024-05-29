@@ -131,3 +131,48 @@ body {
 .loginCard h3{
     text-align:center;
 }
+/*Need stop address media query here
+*/
+.quoteSection {
+    background-image: url("../img/bg.webp");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height:500px;
+    margin-top:-18px
+}
+.quoteContainer{
+    margin-top:40px;
+}
+.quoteColLeft h1 {
+   
+    color: white;
+    font-family: var(--font-family-base);
+    font-size: 60px;
+    text-align: end;
+    font-weight: 800;
+    margin-top:100px;
+}
+.quoteColLeft p {
+    font-family: var(--font-family-base);
+    color: white;
+    font-size: 25px;
+    text-align:end;
+}
+.quoteCard {
+    background: LightGray;
+    height: 300px;
+    border-radius:10px;
+}
+.formInfo label{
+    font-size:16px;
+}
+.formInfo input{
+    height:50px;
+    
+}
+#formSub{
+    padding-left:10px
+}

@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace Campoverde.QMS.Controllers;
 
 public class HomeController(ILogger<HomeController> logger) : Controller
@@ -14,5 +12,10 @@ public class HomeController(ILogger<HomeController> logger) : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    public IActionResult New()
+    {
+        return View("New");
     }
 }
