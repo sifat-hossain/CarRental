@@ -17,6 +17,30 @@
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="VehicleSize" class="control-label"></label>
+                <select asp-for=VehicleSize id="vehicleSize" class="form-control form-select">
+                    <option selected>Select Vehicle...</option>
+                    <option value="0">Small</option>
+                    <option value="1">Lerge</option>
+                    <option value="2">Medium</option>
+                </select>
+                <span asp-validation-for="VehicleSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleTypeEnum" class="control-label"></label>
+                <select asp-for=VehicleTypeEnum id="vehicleType" class="form-control form-select">
+                    <option selected>Select Vehicle Type...</option>
+                    <option value="0">Manual</option>
+                    <option value="1">Automatic</option>
+                </select>
+                <span asp-validation-for="VehicleTypeEnum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhotoUrl" class="control-label"></label>
+                <input asp-for="PhotoUrl" class="form-control" />
+                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+            </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group form-check">
                 <label class="form-check-label">

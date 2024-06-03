@@ -60,9 +60,7 @@ body {
     border-color: var(--quoteBg-color);
 }
 
-.widgetOne {
-    width: 438px;
-    height: 335px;
+.widgetOne {   
     background-color: var(--widgetBg-color);
     border-radius: 10px;
 }
@@ -163,7 +161,7 @@ body {
 }
 .quoteCard {
     background: LightGray;
-    height: 300px;
+    height: 350px;
     border-radius:10px;
 }
 .formInfo label{
