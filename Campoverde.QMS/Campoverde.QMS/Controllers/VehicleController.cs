@@ -157,16 +157,49 @@ public class VehicleController(CampoverdeDbContext context, IWebHostEnvironment 
     }
 
     [HttpPost]
-    public IActionResult GetAvailableVehicles(DateTime startDate, DateTime endDate)
+    public JsonResult GetAvailableVehicles(DateTime startDate, DateTime endDate)
     {
-        var availableVehicles = _context.Vehicle.ToList();
+        List<int> lowSeason = [2, 11];
+        List<int> midSeason = [1, 3, 4, 5, 6, 10, 12];
+        List<int> highSeason = [7, 8, 9];
+
+        var month = startDate.Month;
+
+        double totalHours = (endDate - startDate).TotalHours;
+
+        List<VehiclePrice> availableVehicles = [];
+
+        if (lowSeason.Contains(month))
+        {
+            availableVehicles = [.. _context.VehiclePrice
+               .Include(v => v.Vehicle)
+               .Include(s => s.Season)
+               .Where(vp => vp.Season.Name == "Low Season")];
+        }
+        if (midSeason.Contains(month))
+        {
+            availableVehicles = [.. _context.VehiclePrice
+               .Include(v => v.Vehicle)
+               .Include(s => s.Season)
+               .Where(vp => vp.Season.Name == "Mid Season")];
+        }
+        if (highSeason.Contains(month))
+        {
+            availableVehicles = [.. _context.VehiclePrice
+               .Include(v => v.Vehicle)
+               .Include(s => s.Season)
+               .Where(vp => vp.Season.Name == "High Season")];
+        }
+
         var vehicleViewModel = availableVehicles.Select(x => new VehicleViewModel
         {
-            Id = x.Id,
-            Model = x.Model,
-            VehicleType = Enum.GetName(typeof(VehicleTypeEnum), x.VehicleTypeEnum),
-            VehicleSize = Enum.GetName(typeof(VehicleTypeEnum), x.VehicleSize),
-            PhotoUrl = x.PhotoUrl
+            Id = x.Vehicle.Id,
+            Model = x.Vehicle.Model,
+            VehicleType = Enum.GetName(typeof(VehicleTypeEnum), x.Vehicle.VehicleTypeEnum),
+            VehicleSize = Enum.GetName(typeof(VehicleTypeEnum), x.Vehicle.VehicleSize),
+            PhotoUrl = x.Vehicle.PhotoUrl,
+            Price = x.Price * (Convert.ToDecimal(totalHours))
+
         }).ToList();
 
         return Json(vehicleViewModel);

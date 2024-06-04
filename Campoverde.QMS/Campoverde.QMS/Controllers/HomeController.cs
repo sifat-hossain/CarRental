@@ -42,17 +42,11 @@ public class HomeController(ILogger<HomeController> logger,
             PassengerCount = PassengerCountEnum.FourPerson,
             StartDate = quoteViewModel.StartDate,
             Status = QuoteStatusEnum.New,
-            VehicleId = quoteViewModel.VehicleId
+            VehicleId = quoteViewModel.VehicleId,
+            QuotePrice = quoteViewModel.Price
         };
-        var price = await _campoverdeDbContext.VehiclePrice
-            .Include(v => v.Vehicle)
-            .Include(s => s.Season)
-            .Where(x => x.Season.Name == "Low Season" && x.VehicleId == quoteViewModel.VehicleId)
-            .FirstOrDefaultAsync();
 
-        quote.QuotePrice = price.Price;
-
-        var quoteCreate = await _quoteService.CreateQuoteAsync(quote);
+        await _quoteService.CreateQuoteAsync(quote);
 
         return RedirectToAction("Confirmation", "Quote");
     }
