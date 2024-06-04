@@ -82,8 +82,8 @@ function searchVehicles() {
                 </ul>
             </div>
             <button type="button" class="discount align-items-center rounded-pill p-2 text-center" onclick="selectVehicle('${vehicle.id}','${vehicle.model}', '${vehicle.vehicleType}', '${vehicle.vehicleSize}', '${vehicle.price}', '${vehicle.photoUrl}')">
-                
-                <h3>Price: €180</h3>
+
+                <h3>Price: €${vehicle.price} </h3>
             </button>
         </div>
     </div>
@@ -103,6 +103,7 @@ function searchVehicles() {
 function selectVehicle(vehicleId, model, transmission, size, price, imageUrl) {
     selectedVehicle = { model, transmission, size, price, imageUrl };
     document.getElementById('vehicleId').value = vehicleId;
+    document.getElementById('price').value = price;
     nextStep(); // Navigate to step 3
 }
 function updateSummary() {

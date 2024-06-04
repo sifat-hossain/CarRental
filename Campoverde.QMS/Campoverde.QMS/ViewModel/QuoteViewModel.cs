@@ -16,5 +16,6 @@ public class QuoteViewModel
     public GenderEnum Gender { get; set; }
     public string? Nationality { get; set; }
     public string IsUserAccountNeeded { get; set; }
+    public decimal Price { get; set; }
     public List<Vehicle> AvailableVehicles { get; set; }
 }

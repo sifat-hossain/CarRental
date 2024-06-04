@@ -87,7 +87,6 @@
         },
         
         success: function (response) {
-            debugger;
             // Populate the table with the received data
             response.forEach(function (note) {
                 $('#quoteNotesTable tbody').append(
