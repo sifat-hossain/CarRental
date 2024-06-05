@@ -1,7 +1,5 @@
-﻿using Campoverde.QMS.Common;
-using Campoverde.QMS.ViewModel;
+﻿using Campoverde.QMS.ViewModel;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
 namespace Campoverde.QMS.Controllers;
@@ -47,7 +45,7 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
                 }
                 else
                 {
-                    return RedirectToAction("Create", "Quote");
+                    return RedirectToAction("Index", "Home");
                 }
             }
 

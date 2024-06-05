@@ -35,11 +35,11 @@
                                     <div class="row ">
                                         <div class="col formInfo">
                                             <label class="form-label">Pick up Office</label>
-                                            <input asp-for="PickupLocation" class="form-control" id="picOffice" placeholder="Car pickup location">
+                                            <input asp-for="PickupLocation" class="form-control" id="picOffice" placeholder="Car pickup location" required>
                                         </div>
                                         <div class="col formInfo">
                                             <label class="form-label">Drop Location</label>
-                                            <input asp-for="DropLocation" class="form-control" id="dropOffice" placeholder="Car pickup location">
+                                            <input asp-for="DropLocation" class="form-control" id="dropOffice" placeholder="Car pickup location" required>
                                         </div>
                                     </div>
 
@@ -47,11 +47,11 @@
                                     <div class="row">
                                         <div class="col formInfo">
                                             <label class="form-label">Start time</label>
-                                            <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am">
+                                            <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am" required>
                                         </div>
                                         <div class="col formInfo">
                                             <label class="form-label">End Time</label>
-                                            <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am">
+                                            <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am" required>
                                         </div>
                                     </div>
                                     <br />
@@ -128,27 +128,27 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="inputEmail4" class="form-label">First Name</label>
-                                    <input type="text"asp-for="FirstName"  class="form-control" id="firstName" placeholder="ex: John Smith">
+                                        <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="ex: John Smith" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputPassword4" class="form-label">Last Name</label>
-                                    <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith">
+                                        <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputAddress" class="form-label">Email</label>
-                                    <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com">
+                                        <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputAddress2" class="form-label ">Phone</label>
-                                    <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678">
+                                        <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputCity" class="form-label">Nationality</label>
-                                    <input type="text" asp-for=Nationality class="form-control" id="inputCity" placeholder="British">
+                                        <input type="text" asp-for=Nationality class="form-control" id="inputCity" placeholder="British" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Age</label>
-                                    <select asp-for=Age id="age" class="form-control form-select">
+                                        <select asp-for=Age id="age" class="form-control form-select" required>
                                         <option selected>Age..</option>
                                         @for (int age = 18; age <= 100; age++)
                                         {
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Gender</label>
-                                    <select asp-for=Gender id="gender" class="form-control form-select">
+                                        <select asp-for=Gender id="gender" class="form-control form-select" required>
                                         <option selected>Gender..</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
