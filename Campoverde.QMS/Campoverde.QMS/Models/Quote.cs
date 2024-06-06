@@ -2,6 +2,8 @@
 
 public class Quote : BaseEntity
 {
+    public PickDropLocationEnum PickupLocation { get; set; }
+    public PickDropLocationEnum DropLocation { get; set; }
     public Guid VehicleId { get; set; }
     public Vehicle? Vehicle { get; set; }
     public Guid CustomerId { get; set; }

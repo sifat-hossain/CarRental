@@ -107,8 +107,9 @@ function selectVehicle(vehicleId, model, transmission, size, price, imageUrl) {
     nextStep(); // Navigate to step 3
 }
 function updateSummary() {
-    $('#pickupLocation').text($('#picOffice').val());
-    $('#dropLocation').text($('#dropOffice').val());
+    
+    $('#pickupLocation').text($('#picOffice option:selected').text());
+    $('#dropLocation').text($('#dropOffice option:selected').text());
     $('#fromDate').text($('#startDate').val());
     $('#toDate').text($('#endDate').val());
     $('#vehicleImage').attr('src', selectedVehicle.imageUrl);

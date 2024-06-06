@@ -35,11 +35,23 @@
                                     <div class="row ">
                                         <div class="col formInfo">
                                             <label class="form-label">Pick up Office</label>
-                                            <input asp-for="PickupLocation" class="form-control" id="picOffice" placeholder="Car pickup location" required>
+                                            <select asp-for=PickupLocation id="picOffice" class="form-control form-select" required>
+                                                <option selected>Pickup Location..</option>
+                                                <option value="1">Alicante(ALC) </option>
+                                                <option value="2">MuricaI nternational (RMU)</option>
+                                                <option value="3">Alicante Bus Station</option>
+                                                <option value="4">Alicante Train Station</option>
+                                            </select>
                                         </div>
                                         <div class="col formInfo">
                                             <label class="form-label">Drop Location</label>
-                                            <input asp-for="DropLocation" class="form-control" id="dropOffice" placeholder="Car pickup location" required>
+                                            <select asp-for=DropLocation id="dropOffice" class="form-control form-select" required>
+                                                <option selected>Pickup Location..</option>
+                                                <option value="1">Alicante(ALC) </option>
+                                                <option value="2">MuricaI nternational (RMU)</option>
+                                                <option value="3">Alicante Bus Station</option>
+                                                <option value="4">Alicante Train Station</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -87,7 +99,7 @@
                                 <h3>Quote Summery</h3>
 
                                 <p>Location: <span id="pickupLocation"></span> <i class="bi bi-arrow-right"></i> <span id="dropLocation"></span></p>
-                                <p>From: <span id="fromDate"></span></p> 
+                                <p>From: <span id="fromDate"></span></p>
                                 <p>To: <span id="toDate"></span> </p>
 
                                 <div class="col col-sm-12 text-center">
@@ -120,75 +132,75 @@
                             </div>
                         </div>
                     </div>
-               
-                <div class="col col-sm-6 mb-1 mb-sm-0">
-                    <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
-                        <div class="card-body">
-                            <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="inputEmail4" class="form-label">First Name</label>
+
+                    <div class="col col-sm-6 mb-1 mb-sm-0">
+                        <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
+                            <div class="card-body">
+                                <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="inputEmail4" class="form-label">First Name</label>
                                         <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="ex: John Smith" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputPassword4" class="form-label">Last Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputPassword4" class="form-label">Last Name</label>
                                         <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputAddress" class="form-label">Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputAddress" class="form-label">Email</label>
                                         <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputAddress2" class="form-label ">Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputAddress2" class="form-label ">Phone</label>
                                         <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputCity" class="form-label">Nationality</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputCity" class="form-label">Nationality</label>
                                         <input type="text" asp-for=Nationality class="form-control" id="inputCity" placeholder="British" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Age</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Age</label>
                                         <select asp-for=Age id="age" class="form-control form-select" required>
-                                        <option selected>Age..</option>
-                                        @for (int age = 18; age <= 100; age++)
-                                        {
-                                            <option value="@age">I am @age years old</option>
-                                        }
+                                            <option selected>Age..</option>
+                                            @for (int age = 18; age <= 100; age++)
+                                            {
+                                                <option value="@age">I am @age years old</option>
+                                            }
 
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Gender</label>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Gender</label>
                                         <select asp-for=Gender id="gender" class="form-control form-select" required>
-                                        <option selected>Gender..</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                        <option value="3">Other</option>
-                                    </select>
-                                </div>
+                                            <option selected>Gender..</option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Other</option>
+                                        </select>
+                                    </div>
 
-                                <div class="col-md-12" id="userAccount">
-                                    <label class="col-form-label">Do you want user account?</label>
-                                    <div class="form-check form-check-inline">
+                                    <div class="col-md-12" id="userAccount">
+                                        <label class="col-form-label">Do you want user account?</label>
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r1" value="yes" checked>
-                                        <label class="form-check-label" for="r1">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
+                                            <label class="form-check-label" for="r1">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r2" value="no">
-                                        <label class="form-check-label" for="r2">No</label>
+                                            <label class="form-check-label" for="r2">No</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <p>
-                                    By clicking the <span class="span">Get My Estimate</span> button you agree to the terms and conditions set out below.
-                                    This is part of the contract you will receive when you collect your car. 
-                                </p>
-                                <button type="submit" class="btn btn-primary submitButton">Get My Estimate >></button>
+                                <div class="col-12 text-center">
+                                    <p>
+                                        By clicking the <span class="span">Get My Estimate</span> button you agree to the terms and conditions set out below.
+                                        This is part of the contract you will receive when you collect your car. 
+                                    </p>
+                                    <button type="submit" class="btn btn-primary submitButton">Get My Estimate >></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </section>
         </div>

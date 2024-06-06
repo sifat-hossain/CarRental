@@ -21,6 +21,8 @@ public class HomeController(ILogger<HomeController> logger,
     {
         var quote = new Quote
         {
+            PickupLocation = quoteViewModel.PickupLocation,
+            DropLocation = quoteViewModel.DropLocation,
             IsActive = true,
             IsDeleted = false,
             SpanishAddress = "N/A",
