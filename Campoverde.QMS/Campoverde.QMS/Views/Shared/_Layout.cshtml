@@ -33,7 +33,7 @@
                             <a class="nav-link text-white" href="https://campoverdecars.es/">Welcome</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Quote" asp-action="Create">Get Quote</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Get Quote</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="https://campoverdecars.es/booking/">Booking</a>
@@ -52,8 +52,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Quote" asp-action="Index">Quote</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Vehicle" asp-action="Index">Vehicle</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:white">Vehicle</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="Vehicle" asp-action="Index">List</a></li>
+                                        <li><a class="dropdown-item" asp-controller="VehiclePrice" asp-action="Index">Price</a></li>                                       
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
@@ -77,7 +81,6 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                             </li>
                         }
-                        
                     </ul>
                 </div>
             </div>
@@ -90,8 +93,8 @@
         </main>
     </div>
     <br />
-   @*  <div class="text-center col-12">
-        <a href="https://www.fiverr.com/dhruboi3x">This system is developed by <strong>Isruk</strong> from Bangladesh</a>
+    @*  <div class="text-center col-12">
+    <a href="https://www.fiverr.com/dhruboi3x">This system is developed by <strong>Isruk</strong> from Bangladesh</a>
     </div> *@
     <br />
     <footer class="border-top footer text-white text-center bg-dark">

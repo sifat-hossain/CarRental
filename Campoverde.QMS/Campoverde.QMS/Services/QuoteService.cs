@@ -48,6 +48,8 @@ public class QuoteService(CampoverdeDbContext dbContext,
                 var quoteUpdate = new Quote
                 {
                     Id = quote.Id,
+                    PickupLocation = quote.PickupLocation,
+                    DropLocation = quote.DropLocation,
                     IsActive = quote.IsActive,
                     IsDeleted = quote.IsDeleted,
                     SpanishAddress = quote.SpanishAddress,

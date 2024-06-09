@@ -1,26 +1,32 @@
-﻿@model IEnumerable<Campoverde.QMS.Models.Role>
+﻿@model IEnumerable<Campoverde.QMS.Models.VehiclePrice>
 
 @{
     ViewData["Title"] = "Index";
 }
 
+<h1>Index</h1>
+
 <p>
     <a asp-action="Create" class="btn btn-primary" style="background:hotpink">Create New</a>
 </p>
-<table id="dataTable" class="table table-bordered" style="width:100%">
+<table id="dataTable" class="table table-bordered">
     <thead>
         <tr>
-            <th>SL</th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Sl
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
+                @Html.DisplayNameFor(model => model.Vehicle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                @Html.DisplayNameFor(model => model.Season)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayName("Action")
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +35,7 @@
         }
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-id="@item.Id">
                 <td>
                     @{
                         i++;
@@ -37,13 +43,13 @@
                     @i
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Vehicle.Model)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                    @Html.DisplayFor(modelItem => item.Season.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

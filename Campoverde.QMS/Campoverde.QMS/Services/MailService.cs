@@ -83,7 +83,7 @@ public class MailService : IMailService
         }
     }
 
-    public void SendMail(string toaddress, string ccaddress, string subject, string name, string? Password = null)
+    public void SendMail(string toaddress, string ccaddress, string subject, string name, string? userPassword = null)
     {
         string from = _configuration["EmailConfiguration:SmtpUsername"];
         string host = _configuration["EmailConfiguration:SmtpServer"];
@@ -113,7 +113,7 @@ public class MailService : IMailService
         mailMessage.IsBodyHtml = true;
 
         mailMessage.Subject = subject;
-        mailMessage.Body = password == null ? EmailBody(name) : EmailBodyWithPassword(name, toaddress, password);
+        mailMessage.Body = (userPassword == null ? EmailBody(name) : EmailBodyWithPassword(name, toaddress, userPassword));
 
         SmtpClient smtpClient = new()
         {
@@ -213,7 +213,7 @@ public class MailService : IMailService
 </html>";
         return bodyText;
     }
-    private static string EmailBodyWithPassword(string name, string userName, string password)
+    private static string EmailBodyWithPassword(string name, string userName, string userPassword)
     {
         string bodyText = $@"
 <!DOCTYPE html>
@@ -280,7 +280,7 @@ public class MailService : IMailService
             <p>Thank you for your patience and understanding.</p>
             <p>Here is your login information</p>
             <p>User name:{userName}</p>
-            <p>Password: {password}</p>
+            <p>Password: {userPassword}</p>
             <p>Best regards,</p>
             <p>Campoverde Car Hire</p>
         </div>

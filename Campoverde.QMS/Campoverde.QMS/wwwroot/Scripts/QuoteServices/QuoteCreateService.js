@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
     $('#firstName').on('input', updateFullName);
     $('#lastName').on('input', updateFullName);
 
@@ -96,4 +96,3 @@ $(document).ready(function () {
             }
         });
     }
-});

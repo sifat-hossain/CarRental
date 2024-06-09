@@ -4,6 +4,7 @@ using Campoverde.QMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Campoverde.QMS.Data.Migrations
 {
     [DbContext(typeof(CampoverdeDbContext))]
-    partial class CampoverdeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240601171655_UpdateVehicleEntity")]
+    partial class UpdateVehicleEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,9 +99,6 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("DropLocation")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -119,9 +119,6 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PassengerCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PickupLocation")
                         .HasColumnType("int");
 
                     b.Property<decimal>("QuotePrice")
@@ -366,6 +363,7 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleSize")

@@ -8,6 +8,7 @@ public class CampoverdeDbContext(DbContextOptions<CampoverdeDbContext> options) 
     public DbSet<QuoteNote> QuoteNote { get; set; }
     public DbSet<Role> Role { get; set; }
     public DbSet<Vehicle> Vehicle { get; set; }
+    public DbSet<VehiclePrice> VehiclePrice { get; set; }
 
     protected override void ConfigureConventions(
             ModelConfigurationBuilder configurationBuilder)

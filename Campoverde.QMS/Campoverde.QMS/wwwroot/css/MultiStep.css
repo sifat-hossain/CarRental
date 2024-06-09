@@ -1,0 +1,107 @@
+﻿.step {
+    display: none;
+}
+
+    .step.active {
+        display: block;
+    }
+
+.progressbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    counter-reset: step;
+}
+
+    .progressbar div {
+        position: relative;
+        text-align: center;
+        flex: 1;
+        color: gray;
+    }
+
+        .progressbar div::before {
+            content: counter(step);
+            counter-increment: step;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 2px solid gray;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        .progressbar div::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: gray;
+            top: 15px;
+            left: -50%;
+            z-index: -1;
+        }
+
+        .progressbar div:first-child::after {
+            content: none;
+        }
+
+        .progressbar div.active {
+            color: black;
+        }
+
+            .progressbar div.active::before {
+                border-color: #f0ad4e;
+                background-color: #f0ad4e;
+            }
+
+            .progressbar div.active + div::after {
+                background-color: #f0ad4e;
+            }
+
+.vehicle-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.vehicle-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.premium {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+}
+
+.discount {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    text-align: right;
+    background-color: hotPink;
+    border: none !important;
+}
+
+.premium .text-warning {
+    color: #ffc107;
+}
+
+.premium ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+    .premium ul li {
+        margin-bottom: 5px;
+    }
