@@ -58,7 +58,7 @@ public class VehicleController(CampoverdeDbContext context, IWebHostEnvironment 
             {
                 await vehicle.Image.CopyToAsync(fileStream);
             }
-            vehicle.PhotoUrl = "~/images/" + uniqueFileName;
+            vehicle.PhotoUrl = "/images/" + uniqueFileName;
             vehicle.Id = Guid.NewGuid();
             _context.Add(vehicle);
             await _context.SaveChangesAsync();
