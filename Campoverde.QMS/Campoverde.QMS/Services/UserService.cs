@@ -1,7 +1,4 @@
-﻿
-using Campoverde.QMS.Common;
-
-namespace Campoverde.QMS.Services;
+﻿namespace Campoverde.QMS.Services;
 
 public class UserService(CampoverdeDbContext dbContext) : IUserService
 {
@@ -20,6 +17,12 @@ public class UserService(CampoverdeDbContext dbContext) : IUserService
                     user.IsActive = true;
                     user.Password = PasswordEncryption.HashPassword(user.Password);
                     await _dbContext.User.AddAsync(user);
+                    return "success";
+                }
+                else
+                {
+                    dbitem.Password = PasswordEncryption.HashPassword(user.Password);
+                    _dbContext.Update(dbitem);
                     return "success";
                 }
                 return "User already exist";

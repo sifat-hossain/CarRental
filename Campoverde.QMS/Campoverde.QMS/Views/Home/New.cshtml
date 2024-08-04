@@ -1,0 +1,71 @@
+﻿@model Campoverde.QMS.Models.Quote
+<section class="quoteSection">
+    <div class="container quoteContainer">
+        <div class="row">
+            <div class="col text-center headingText text-light">
+                <p>Find the best price for your car hire</p>
+            </div>
+        </div>
+        <div class="row quoteRow">
+            <div class="col-5 quoteColLeft">
+                <h1> Hire a Perfect ride</h1>
+                <p class="quoteColLeft"> Hassle free car hiring</p>
+            </div>
+
+            <div class="col-7 quoteColCard">
+                <div class="quoteCard pt-4">
+
+                    <div class="container ">
+                        <div class="row ">
+                            <div class="col formInfo ">
+                                    <label class="form-label">Pick up Office</label>
+                                    <input asp-for="SpanishAddress" class="form-control "
+                                    id="startDate" placeholder="Car pickup location">
+                            </div>
+                            <div class="col formInfo ">
+                                <label class="form-label">Drop Location</label>
+                                <input asp-for="SpanishAddress" class="form-control "
+                                       id="startDate" placeholder="Car pickup location">
+                            </div>
+                        </div>
+                        
+                       <br />
+                        <div class="row">
+                            <div class="col formInfo">
+                                    <label class="form-label">Start time</label>
+                                    <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am">
+                                </div>
+                            <div class="col formInfo">
+                                    <label class="form-label">End Time</label>
+                                    <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am">
+                                </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary submitButton">Search Now >></button>
+
+                            </div>
+
+                        </div>
+                            
+                    </div>
+                        
+
+
+                    
+                    </div>
+                    </div>
+
+                </div>
+                    </div>
+
+
+                </div>
+                
+            </div>
+        </div>
+    
+</section>

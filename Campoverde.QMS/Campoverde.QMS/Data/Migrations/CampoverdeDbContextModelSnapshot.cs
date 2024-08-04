@@ -96,6 +96,9 @@ namespace Campoverde.QMS.Data.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("DropLocation")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -116,6 +119,9 @@ namespace Campoverde.QMS.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PassengerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PickupLocation")
                         .HasColumnType("int");
 
                     b.Property<decimal>("QuotePrice")
@@ -359,32 +365,18 @@ namespace Campoverde.QMS.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VehicleSize")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleTypeEnum")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Vehicle", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("056ac989-5eb4-4f07-8630-069098584cfe"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Model = "Ford Ka"
-                        },
-                        new
-                        {
-                            Id = new Guid("bb4b94ca-5ad7-4a12-8857-e24c6ef04ef0"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Model = "VW Polo"
-                        },
-                        new
-                        {
-                            Id = new Guid("29dc8766-06fc-45ee-9f20-1f342555bf6e"),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Model = "Toyota Auris"
-                        });
                 });
 
             modelBuilder.Entity("Campoverde.QMS.Models.VehiclePrice", b =>

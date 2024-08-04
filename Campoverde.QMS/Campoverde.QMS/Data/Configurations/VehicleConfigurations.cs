@@ -17,28 +17,5 @@ public class VehicleConfigurations : IEntityTypeConfiguration<Vehicle>
         builder.Property(b => b.IsActive)
             .HasDefaultValue(true);
 
-        builder.HasData([
-            new Vehicle
-            {
-                Id=Guid.Parse("056ac989-5eb4-4f07-8630-069098584cfe"),
-                IsActive=true,
-                IsDeleted=false,
-                Model="Ford Ka"
-            },
-            new Vehicle
-            {
-                Id=Guid.Parse("bb4b94ca-5ad7-4a12-8857-e24c6ef04ef0"),
-                IsActive=true,
-                IsDeleted=false,
-                Model="VW Polo"
-            },
-            new Vehicle
-            {
-                Id=Guid.Parse("29dc8766-06fc-45ee-9f20-1f342555bf6e"),
-                IsActive=true,
-                IsDeleted=false,
-                Model="Toyota Auris"
-            }
-            ]);
     }
 }

@@ -1,15 +1,21 @@
-﻿using Campoverde.QMS.Common.Enums;
-
-namespace Campoverde.QMS.ViewModel;
+﻿namespace Campoverde.QMS.ViewModel;
 
 public class QuoteViewModel
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public PickDropLocationEnum PickupLocation { get; set; }
+    public PickDropLocationEnum DropLocation { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
     public string Email { get; set; }
-    public string Phone { get; set; }
-    public string SpanishAddress { get; set; }
-    public int VehicleId { get; set; }
-    public VehicleSizeEnum VehicleSize { get; set; }
-    public VehicleTypeEnum VehicleType { get; set; }
+    public Guid VehicleId { get; set; }
+    public Vehicle? Vehicle { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Phone { get; set; }
+    public int Age { get; set; }
+    public GenderEnum Gender { get; set; }
+    public string? Nationality { get; set; }
+    public string IsUserAccountNeeded { get; set; }
+    public decimal Price { get; set; }
+    public List<Vehicle> AvailableVehicles { get; set; }
 }

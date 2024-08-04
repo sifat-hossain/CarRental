@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace Campoverde.QMS.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -73,6 +74,9 @@ namespace Campoverde.QMS.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VehicleSize = table.Column<int>(type: "int", nullable: false),
+                    VehicleTypeEnum = table.Column<int>(type: "int", nullable: false),
+                    PhotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
@@ -109,6 +113,8 @@ namespace Campoverde.QMS.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    PickupLocation = table.Column<int>(type: "int", nullable: false),
+                    DropLocation = table.Column<int>(type: "int", nullable: false),
                     VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     VehicleSize = table.Column<int>(type: "int", nullable: false),
@@ -208,16 +214,6 @@ namespace Campoverde.QMS.Data.Migrations
                     { new Guid("6f475b1d-4563-4744-92f3-101421938d5d"), "Low Season" },
                     { new Guid("b94a7602-3646-43cd-a5a5-2965df0c6ab5"), "Mid Season" },
                     { new Guid("c19e488d-e4d1-4433-9651-55d72c3e9662"), "High Season" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Vehicle",
-                columns: new[] { "Id", "IsActive", "Model" },
-                values: new object[,]
-                {
-                    { new Guid("056ac989-5eb4-4f07-8630-069098584cfe"), true, "Ford Ka" },
-                    { new Guid("29dc8766-06fc-45ee-9f20-1f342555bf6e"), true, "Toyota Auris" },
-                    { new Guid("bb4b94ca-5ad7-4a12-8857-e24c6ef04ef0"), true, "VW Polo" }
                 });
 
             migrationBuilder.InsertData(

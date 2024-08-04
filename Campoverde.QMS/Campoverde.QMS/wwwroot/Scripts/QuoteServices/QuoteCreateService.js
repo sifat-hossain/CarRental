@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
     $('#firstName').on('input', updateFullName);
     $('#lastName').on('input', updateFullName);
 
@@ -95,48 +95,3 @@ $(document).ready(function () {
             }
         });
     }
-
-
-    
-    const fromDateInput = document.getElementById('startDate');
-    const toDateInput = document.getElementById('endDate');
-    const errorMessage = document.getElementById('error-message');
-
-    function validateDateDifference() {
-        const fromDate = new Date(fromDateInput.value);
-        const toDate = new Date(toDateInput.value);
-
-        if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
-            return; // Either date is not selected yet
-        }
-
-        const differenceInTime = toDate.getTime() - fromDate.getTime();
-        const differenceInHours = differenceInTime / (1000 * 3600);
-
-        if (differenceInHours < 72) {
-            errorMessage.style.display = 'block';
-        } else {
-            errorMessage.style.display = 'none';
-        }
-    }
-
-    function setMinimumToDate() {
-        const fromDate = new Date(fromDateInput.value);
-
-        if (isNaN(fromDate.getTime())) {
-            toDateInput.min = '';
-            return; // From date is not selected yet
-        }
-
-        const minToDate = new Date(fromDate.getTime());
-        minToDate.setHours(minToDate.getHours() + 72);
-        toDateInput.min = minToDate.toISOString().slice(0, 16);
-    }
-
-    fromDateInput.addEventListener('change', () => {
-        setMinimumToDate();
-        validateDateDifference();
-    });
-
-    toDateInput.addEventListener('change', validateDateDifference);
-});

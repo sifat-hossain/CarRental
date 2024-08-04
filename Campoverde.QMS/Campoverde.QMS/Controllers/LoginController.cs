@@ -46,7 +46,7 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
                 }
                 else
                 {
-                    return RedirectToAction("Create", "Quote");
+                    return RedirectToAction("Index", "Home");
                 }
             }
 

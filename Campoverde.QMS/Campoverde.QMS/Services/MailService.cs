@@ -83,7 +83,7 @@ public class MailService : IMailService
         }
     }
 
-    public void SendMail(string toaddress, string ccaddress, string subject, string name, string? Password = null)
+    public void SendMail(string toaddress, string ccaddress, string subject, string name, string? userPassword = null)
     {
         string from = _configuration["EmailConfiguration:SmtpUsername"];
         string host = _configuration["EmailConfiguration:SmtpServer"];
@@ -113,7 +113,7 @@ public class MailService : IMailService
         mailMessage.IsBodyHtml = true;
 
         mailMessage.Subject = subject;
-        mailMessage.Body = password == null ? EmailBody(name) : EmailBodyWithPassword(name, toaddress, password);
+        mailMessage.Body = (userPassword == null ? EmailBody(name) : EmailBodyWithPassword(name, toaddress, userPassword));
 
         SmtpClient smtpClient = new()
         {
@@ -213,7 +213,7 @@ public class MailService : IMailService
 </html>";
         return bodyText;
     }
-    private static string EmailBodyWithPassword(string name, string userName, string password)
+    private static string EmailBodyWithPassword(string name, string userName, string userPassword)
     {
         string bodyText = $@"
 <!DOCTYPE html>
@@ -279,8 +279,8 @@ public class MailService : IMailService
             <p>In the meantime, if you have any urgent matters or further questions, please feel free to contact Marcus at +34 772 67 75 08 or Yorkie at +34 622 42 86 67 or by clicking the WhatsApp link on our website.</p>
             <p>Thank you for your patience and understanding.</p>
             <p>Here is your login information</p>
-            <p>User name:{userName}</p>
-            <p>Password: {password}</p>
+            <p>User name: {userName}</p>
+            <p>Password: {userPassword}</p>
             <p>Best regards,</p>
             <p>Campoverde Car Hire</p>
         </div>
