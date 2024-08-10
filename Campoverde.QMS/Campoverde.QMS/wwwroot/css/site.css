@@ -82,22 +82,18 @@ body {
     font-size: 25px;
 }
 
-.headingText {
-    font-family: var(--font-family-base);
-    font-size: 50px;
-}
+
 
 .submitButton {
-    width: 271px;
-    height: 41px;
+   
     background-color: #010101;
     border-color: #010101;
 }
 
-    .submitButton:hover {
-        background-color: var(--third-color) !important;
-        border-color: var(--third-color);
-    }
+.submitButton:hover {
+    background-color: var(--third-color) !important;
+    border-color: var(--third-color);
+}
 
 .span {
     color: var(--secondary-color);
@@ -131,38 +127,60 @@ body {
 }
 /*Need stop address media query here
 */
-.quoteSection {
+
+#bgBody {
+    background-image: url("../img/bg.webp");
+    background-size: cover;
+    left: 0px;
+    right: 0px;
+    background-position: center;
+    position: absolute;
+    height:100vh;
+    margin-top:-18px
+    
+}
+
+.progressbar {
+    background-color: var(--widgetBg-color);
+    border-radius:15px;
+    padding:5px
+}
+/*.quoteSection {
     background-image: url("../img/bg.webp");
     background-size: cover;
     background-position: center;
     position: absolute;
     left: 0px;
     right: 0px;
-    height:500px;
+    min-height:500px;
     margin-top:-18px
-}
-.quoteContainer{
-    margin-top:40px;
-}
-.quoteColLeft h1 {
-   
-    color: white;
-    font-family: var(--font-family-base);
-    font-size: 60px;
-    text-align: end;
-    font-weight: 800;
-    margin-top:100px;
-}
+}*/
+/*.quoteContainer {
+    margin-top: 40px;
+}*/
 .quoteColLeft p {
-    font-family: var(--font-family-base);
-    color: white;
-    font-size: 25px;
+    font-family: var(--font-family-base);    
+    font-weight: 700;
+    font-size: 75px;
     text-align:end;
+}
+.quoteRow{
+    height:600px
+}
+.quoteColLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 400px; /* Adjust the height as needed */
 }
 .quoteCard {
     background: LightGray;
-    height: 350px;
-    border-radius:10px;
+    height: 330px;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top:45px;               
+
 }
 .formInfo label{
     font-size:16px;
@@ -173,4 +191,15 @@ body {
 }
 #formSub{
     padding-left:10px
+}
+/*Responsive CSS */
+
+@media only screen and (max-width: 600px) {
+    .quoteCard {
+        
+        height:367px;
+    }
+    .quoteColLeft {
+        display: none;
+    }
 }
