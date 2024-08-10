@@ -1,4 +1,6 @@
-﻿let currentStep = 0;
+﻿
+
+let currentStep = 0;
 
 function showStep(step) {
     let steps = document.querySelectorAll('.step');
@@ -18,13 +20,15 @@ function showStep(step) {
 }
 
 function nextStep() {
-    currentStep++;
-    if (currentStep >= document.querySelectorAll('.step').length) {
-        currentStep = document.querySelectorAll('.step').length - 1;
-    }
-    showStep(currentStep);
-    if (currentStep === 2) {
-        updateSummary();
+    if ($('form').valid()) {
+        currentStep++;
+        if (currentStep >= document.querySelectorAll('.step').length) {
+            currentStep = document.querySelectorAll('.step').length - 1;
+        }
+        showStep(currentStep);
+        if (currentStep === 2) {
+            updateSummary();
+        }
     }
 }
 
@@ -83,7 +87,7 @@ function searchVehicles() {
             </div>
             <button type="button" class="discount align-items-center rounded-pill p-2 text-center" onclick="selectVehicle('${vehicle.id}','${vehicle.model}', '${vehicle.vehicleType}', '${vehicle.vehicleSize}', '${vehicle.price}', '${vehicle.photoUrl}')">
 
-                <h3>Price: €${vehicle.price} </h3>
+                <h3>Price: €${vehicle.price} </h3> 
             </button>
         </div>
     </div>
@@ -106,19 +110,68 @@ function selectVehicle(vehicleId, model, transmission, size, price, imageUrl) {
     document.getElementById('price').value = price;
     nextStep(); // Navigate to step 3
 }
+
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    let hours = date.getHours();
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const strTime = hours + ':' + minutes + ' ' + ampm;
+    return date.toISOString().split('T')[0] + ' ' + strTime;
+}
 function updateSummary() {
-    
+
     $('#pickupLocation').text($('#picOffice option:selected').text());
     $('#dropLocation').text($('#dropOffice option:selected').text());
-    $('#fromDate').text($('#startDate').val());
-    $('#toDate').text($('#endDate').val());
+    $('#fromDate').text(formatDateTime($('#startDate').val()));
+    $('#toDate').text(formatDateTime($('#endDate').val()));
     $('#vehicleImage').attr('src', selectedVehicle.imageUrl);
     $('#vehicleModel').text(selectedVehicle.model);
     $('#vehicleTransmission').text(selectedVehicle.transmission);
     $('#vehicleSize').text(selectedVehicle.size);
     $('#vehiclePrice').text(selectedVehicle.price);
 }
-document.getElementById('multiStepForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Form submitted successfully!');
+
+$('#picOffice').on('change', function () {
+    var selectedPickup = $(this).val();
+
+    // Reset Drop Location Options
+    $('#dropOffice option').each(function () {
+        $(this).show(); // Show all options initially
+    });
+
+    // Hide the selected pickup option in Drop Location
+    if (selectedPickup) {
+        $('#dropOffice option[value="' + selectedPickup + '"]').hide();
+    }
+
+    // Reset Drop Location if the current selection is the same as the hidden option
+    if ($('#dropOffice').val() === selectedPickup) {
+        $('#dropOffice').val('');
+    }
 });
+
+const now = new Date();
+
+// Format date to YYYY-MM-DDTHH:MM for the datetime-local input type
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+// Set the minimum date and time for the start date input
+const startDateInput = document.getElementById('startDate');
+startDateInput.min = formatDate(now);
+
+// Set the minimum date and time for the end date input
+// Ensure it's at least one hour after the start date
+const endDateInput = document.getElementById('endDate');
+const minEndDate = new Date(now.getTime() + 60 * 60 * 1000);
+endDateInput.min = formatDate(minEndDate);
+

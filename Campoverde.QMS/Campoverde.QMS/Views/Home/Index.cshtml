@@ -12,6 +12,7 @@
         <div onclick="goToStep(2)">Confirmation</div>
     </div>
     <form asp-controller="Home" asp-action="Index" method="post">
+    
         <div class="step active">
             <section class="quoteSection">
                 <div class="container quoteContainer">
@@ -34,24 +35,26 @@
                                     <h3>Step 1</h3>
                                     <div class="row ">
                                         <div class="col formInfo">
-                                            <label class="form-label">Pick up Office</label>
+                                            <label for="picOffice" class="form-label">Pick up Office</label>
                                             <select asp-for=PickupLocation id="picOffice" class="form-control form-select" required>
-                                                <option selected>Pickup Location..</option>
+                                                <option selected value="">Pickup Location..</option>
                                                 <option value="1">Alicante(ALC) </option>
                                                 <option value="2">MuricaI nternational (RMU)</option>
                                                 <option value="3">Alicante Bus Station</option>
                                                 <option value="4">Alicante Train Station</option>
                                             </select>
+                                            <span asp-validation-for="PickupLocation" class="text-danger"></span>
                                         </div>
                                         <div class="col formInfo">
-                                            <label class="form-label">Drop Location</label>
+                                            <label for="dropLocation" class="form-label">Drop Location</label>
                                             <select asp-for=DropLocation id="dropOffice" class="form-control form-select" required>
-                                                <option selected>Drop Location..</option>
+                                                <option selected value="">Drop Location..</option>
                                                 <option value="1">Alicante(ALC) </option>
                                                 <option value="2">MuricaI nternational (RMU)</option>
                                                 <option value="3">Alicante Bus Station</option>
                                                 <option value="4">Alicante Train Station</option>
                                             </select>
+                                            <span asp-validation-for="DropLocation" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -60,10 +63,12 @@
                                         <div class="col formInfo">
                                             <label class="form-label">Start time</label>
                                             <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am" required>
+                                            <span asp-validation-for="StartDate" class="text-danger"></span>
                                         </div>
                                         <div class="col formInfo">
                                             <label class="form-label">End Time</label>
                                             <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am" required>
+                                            <span asp-validation-for="EndDate" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <br />
@@ -81,7 +86,9 @@
         </div>
         <!-- Step 2 -->
         <div class="step">
-
+            <button type="button" class="btn btn-secondary float-end" style="background-color:hotpink;color:black" 
+            onclick="prevStep()">Back</button>
+          
             <h3>Step 2: Available Cars</h3>
             <div id="availableVehicles" class="vehicle-list"></div>
             <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
@@ -141,18 +148,22 @@
                                     <div class="col-md-6">
                                         <label for="inputEmail4" class="form-label">First Name</label>
                                         <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="ex: John Smith" required>
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputPassword4" class="form-label">Last Name</label>
                                         <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith" required>
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputAddress" class="form-label">Email</label>
                                         <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com" required>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputAddress2" class="form-label ">Phone</label>
                                         <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678" required>
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCity" class="form-label">Nationality</label>
@@ -206,6 +217,8 @@
         </div>
     </form>
 </div>
+@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/scripts/multiple.js"></script>
 
 
