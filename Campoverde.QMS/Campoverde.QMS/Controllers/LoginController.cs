@@ -35,7 +35,8 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
 
                 var authProperties = new AuthenticationProperties
                 {
-                    IsPersistent = true
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(1) // Match the session timeout
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);

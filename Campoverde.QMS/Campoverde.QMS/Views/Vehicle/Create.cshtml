@@ -18,7 +18,7 @@
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VehicleSize" class="control-label"></label>
+                <label asp-for="VehicleSize" class="control-label">Size</label>
                 <select asp-for=VehicleSize id="vehicleSize" class="form-control form-select">
                     <option selected>Select Vehicle...</option>
                     <option value="0">Small</option>
@@ -28,7 +28,7 @@
                 <span asp-validation-for="VehicleSize" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VehicleTypeEnum" class="control-label"></label>
+                <label asp-for="VehicleTypeEnum" class="control-label">Type</label>
                 <select asp-for=VehicleTypeEnum id="vehicleType" class="form-control form-select">
                     <option selected>Select Vehicle Type...</option>
                     <option value="0">Manual</option>

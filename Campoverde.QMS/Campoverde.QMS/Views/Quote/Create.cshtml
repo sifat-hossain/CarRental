@@ -112,11 +112,16 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Arrival (Start Date time)</label>
-                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am">
+                                <input type="datetime-local" asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Expected Date & Time of Return (End Date time)</label>
-                                <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am">
+                                <input type="datetime-local" asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am">
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <span id="error-message" class="text-danger" style="display: none;">The difference between the dates should be at least 72 hours.</span>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label ">Spanish Address</label>
@@ -161,17 +166,23 @@
                             <b>Quote Summary</b>
                             <br />Quote  receiver: <span id="receiver"></span>
                             <br />Phone: <span id="qPhone"></span>
-                            <br>Email: <span id="qEmail"></span>
-                            <br>Vehicle: <span id="qVehicle"></span>
-                            <br>Transmission: <span id="qVehicleType"></span>
-                            <br>From: <span id="qFromDate"> </span> To <span id="qToDate"></span>
+                            <br />Email: <span id="qEmail"></span>
+                            <br />Vehicle: <span id="qVehicle"></span>
+                            <br />Transmission: <span id="qVehicleType"></span>
+                            <br />From: <span id="qFromDate"> </span>
+                            <br />To: <span id="qToDate"></span>
                             <hr />
                         <p class="text-center" style="font-weight:700;font-size:20px;">Estimated Quote Price</p>
-                        <p class="text-center" style="font-weight:800;font-size:64px;font-family:Catamaran">$ <span id="price"></span> </p>
+                        <p class="text-center" style="font-weight:800;font-size:64px;font-family:Catamaran">€ <span id="price"></span> </p>
                         <p class="text-center">
                             This is an approximate price based on your input,
                             <br />
                             it is subject to vary on different aspects
+                        </p>
+                        <p class="text-center">
+                            Accident damage is fixed <strong class="text-danger">€350.00</strong> but nothing is charged
+                            <br />
+                            unless there is an accident
                         </p>
                     </div>
                 </div>
@@ -182,7 +193,7 @@
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");       
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="~/scripts/quoteservices/quotecreateservice.js"></script>
 }

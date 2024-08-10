@@ -4,21 +4,19 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">First Name</label>
                 <input asp-for="FirstName" class="form-control" placeholder=""/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">Last Name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
@@ -33,37 +31,37 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HomeAddress" class="control-label"></label>
+                <label asp-for="HomeAddress" class="control-label">Home Address</label>
                 <input asp-for="HomeAddress" class="form-control" />
                 <span asp-validation-for="HomeAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SpanishAddress" class="control-label"></label>
+                <label asp-for="SpanishAddress" class="control-label">Spanish Address</label>
                 <input asp-for="SpanishAddress" class="form-control" />
                 <span asp-validation-for="SpanishAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DriverName" class="control-label"></label>
+                <label asp-for="DriverName" class="control-label">Driver Name</label>
                 <input asp-for="DriverName" class="form-control" />
                 <span asp-validation-for="DriverName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrimaryDrivingLicenceNumber" class="control-label"></label>
+                <label asp-for="PrimaryDrivingLicenceNumber" class="control-label">Primary Driving Licence Number</label>
                 <input asp-for="PrimaryDrivingLicenceNumber" class="form-control" />
                 <span asp-validation-for="PrimaryDrivingLicenceNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SecondaryDrivingLicenseNumber" class="control-label"></label>
+                <label asp-for="SecondaryDrivingLicenseNumber" class="control-label">Secondary Driving License Number</label>
                 <input asp-for="SecondaryDrivingLicenseNumber" class="form-control" />
                 <span asp-validation-for="SecondaryDrivingLicenseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LicenseExpiryDate" class="control-label"></label>
+                <label asp-for="LicenseExpiryDate" class="control-label">License Expiry Date</label>
                 <input asp-for="LicenseExpiryDate" class="form-control" />
                 <span asp-validation-for="LicenseExpiryDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DriverPassportNumber" class="control-label"></label>
+                <label asp-for="DriverPassportNumber" class="control-label">Driver Passport Number</label>
                 <input asp-for="DriverPassportNumber" class="form-control" />
                 <span asp-validation-for="DriverPassportNumber" class="text-danger"></span>
             </div>

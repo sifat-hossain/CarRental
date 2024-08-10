@@ -6,6 +6,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login/Index";
         options.LogoutPath = "/Login/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(1); // Set session timeout to 30 minutes
+        options.SlidingExpiration = true;
     });
 
 builder.Services.AddAuthorizationBuilder()

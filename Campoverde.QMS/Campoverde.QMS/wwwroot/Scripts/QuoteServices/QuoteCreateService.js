@@ -25,16 +25,13 @@
 
     $('#startDate').change(function () {
         var startDate = $('#startDate').val();
-        $('#qFromDate').text(startDate);
+        $('#qFromDate').text(startDate);       
     });
 
     $('#endDate').change(function () {
         var endDate = $('#endDate').val();
         $('#qToDate').text(endDate);
     });
-
-
-
     $('#vehicle, #startDate, #endDate').change(function () {
         var vehicleModelId = $('#vehicle').val();
         var startDate = new Date($('#startDate').val());
@@ -57,19 +54,21 @@
             type: 'GET',
             data: { vehicleModelId: vehicleModelId },
             success: function (response) {
-
+                debugger;
                 if (response !== null) {
                     var price = response;
-                    var hoursDifference = Math.abs(startDate - endDate) / 36e5; // Convert milliseconds to hours
+                    var hoursDifference = Math.abs(endDate-startDate) / 36e5; // Convert milliseconds to hours
                     var totalPrice = price * hoursDifference;
-                    $('#price').text(+ totalPrice.toFixed(2));
-                    $('#quotePrice').val(totalPrice.toFixed(2));
+                    if (!isNaN(totalPrice)) {
+                        $('#price').text(totalPrice.toFixed(2));
+                        $('#quotePrice').val(totalPrice.toFixed(2));
+                    }
                 } else {
-                    $('#price').text('Price not available');
+                    $('#price').text('');
                 }
             },
             error: function () {
-                $('#price').text('Error occurred');
+                $('#price').text('');
             }
         });
     }
