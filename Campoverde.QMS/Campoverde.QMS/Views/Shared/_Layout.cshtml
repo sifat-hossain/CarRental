@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/Campoverde.QMS.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -56,7 +56,7 @@
                                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:white">Vehicle</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" asp-controller="Vehicle" asp-action="Index">List</a></li>
-                                        <li><a class="dropdown-item" asp-controller="VehiclePrice" asp-action="Index">Price</a></li>                                       
+                                        <li><a class="dropdown-item" asp-controller="VehiclePrice" asp-action="Index">Price</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -69,10 +69,12 @@
                                     <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
                                 </li>
                             }
-                            <li class="nav-item ms-auto">
-                                <form asp-controller="Login" asp-action="Logout" method="post">
-                                    <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
-                                </form>
+                            <li class="nav-item dropdown ms-auto">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:white"><i class="bi bi-person"></i> @TempData["FullName"]</a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-controller="Login" asp-action="ChangePassword">Change Password</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a></li>
+                                </ul>
                             </li>
                         }
                         else
@@ -90,7 +92,7 @@
     <div class="container body-content">
         <main role="main" class="pb-3">
             @RenderBody()
-           
+
         </main>
     </div>
     <br />
@@ -98,7 +100,7 @@
     <a href="https://www.fiverr.com/dhruboi3x">This system is developed by <strong>Isruk</strong> from Bangladesh</a>
     </div> *@
     <br />
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
