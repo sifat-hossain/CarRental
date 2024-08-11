@@ -7,134 +7,77 @@
 
 <div id="bgBody">
 
-<div class="container mt-1" style="font-family:Catamaran">
-    <div class="progressbar">
-        <div class="active" onclick="goToStep(0)">PLACE & DATES</div>
-        <div onclick="goToStep(1)">CAR</div>
-        <div onclick="goToStep(2)">Confirmation</div>
-    </div>
-    <form asp-controller="Home" asp-action="Index" method="post">
-    
-        <div class="step active">
-            <section class="quoteSection">
-                <div class="container quoteContainer">
-                    <div class="row">
-                        <div class="col text-center headingText text-light">
-                            <h2>Find the best price for your car hire</h2>
+    <div class="container mt-1" style="font-family:Catamaran">
+        <div class="progressbar">
+            <div class="active" onclick="goToStep(0)">PLACE & DATES</div>
+            <div onclick="goToStep(1)">CAR</div>
+            <div onclick="goToStep(2)">Confirmation</div>
+        </div>
+        <form asp-controller="Home" asp-action="Index" method="post">
 
-                        </div>
-                    </div>
-                    <div class="row quoteRow">
-                        <div class="col-md-4  col-sm-0  text-light quoteColLeft">
-                            <p> Hire a Perfect ride</p> 
-                            
-                        </div>
+            <div class="step active">
+                <section class="quoteSection">
+                    <div class="container quoteContainer">
+                        <div class="row">
+                            <div class="col text-center headingText text-light">
+                                <h2>Find the best price for your car hire</h2>
 
-                        <div class="col-md-8 col-sm-12 quoteColCard">
-                            <div class="quoteCard">
-
-                                <div class="container ">
-
-                                    <h3>Step 1</h3>
-                                    <div class="row ">
-                                        <div class="col formInfo">
-                                            <label for="picOffice" class="form-label">Pick up Office</label>
-                                            <select asp-for=PickupLocation id="picOffice" class="form-control form-select" required>
-                                                <option selected value="">Pickup Location..</option>
-                                                <option value="1">Alicante(ALC) </option>
-                                                <option value="2">MuricaI nternational (RMU)</option>
-                                                <option value="3">Alicante Bus Station</option>
-                                                <option value="4">Alicante Train Station</option>
-                                            </select>
-                                            <span asp-validation-for="PickupLocation" class="text-danger"></span>
-                                        </div>
-                                        <div class="col formInfo">
-                                            <label for="dropLocation" class="form-label">Drop Location</label>
-                                            <select asp-for=DropLocation id="dropOffice" class="form-control form-select" required>
-                                                <option selected value="">Drop Location..</option>
-                                                <option value="1">Alicante(ALC) </option>
-                                                <option value="2">MuricaI nternational (RMU)</option>
-                                                <option value="3">Alicante Bus Station</option>
-                                                <option value="4">Alicante Train Station</option>
-                                            </select>
-                                            <span asp-validation-for="DropLocation" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <br />
-                                    <div class="row">
-                                        <div class="col formInfo">
-                                            <label class="form-label">Start time</label>
-                                            <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am" required>
-                                            <span asp-validation-for="StartDate" class="text-danger"></span>
-                                        </div>
-                                        <div class="col formInfo">
-                                            <label class="form-label">End ime</label>
-                                            <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am" required>
-                                            <span asp-validation-for="EndDate" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <button type="button" class="btn btn-primary w-100 submitButton" onclick="searchVehicles()">Search Now</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <!-- Step 2 -->
-        <div class="step">
-            <button type="button" class="btn btn-secondary float-end" style="background-color:hotpink;color:black" 
-            onclick="prevStep()">Back</button>
-          
-            <h3>Step 2: Available Cars</h3>
-            <div id="availableVehicles" class="vehicle-list"></div>
-            <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
-            <input asp-for="VehicleId" type="hidden" class="form-control" id="vehicleId">
-            <input asp-for="Price" type="hidden" class="form-control" id="price">
-        </div>
+                        <div class="row quoteRow">
+                            <div class="col-md-4  col-sm-0  text-light quoteColLeft">
+                                <p> Hire a Perfect ride</p>
 
-        <!-- Step 3 -->
-        <div class="step">
-            <section>
-                <div class="row container">
-                    <div class="col col-sm-6 mb-1 mb-sm-0">
-                        <div class="card p-2 mb-1 bg-body-tertiary widgetOne">
-                            <div class="card-body widgetBody">
-                                <h3>Quote Summery</h3>
+                            </div>
 
-                                <p>Location: <span id="pickupLocation"></span> <i class="bi bi-arrow-right"></i> <span id="dropLocation"></span></p>
-                                <p>From: <span id="fromDate"></span></p>
-                                <p>To: <span id="toDate"></span> </p>
+                            <div class="col-md-8 col-sm-12 quoteColCard">
+                                <div class="quoteCard">
 
-                                <div class="col col-sm-12 text-center">
-                                    <img src="" id="vehicleImage" alt="Vehicle Image" class="vehicle-image" />
-                                    <h3 id="vehicleModel"></h3>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <ul class="list-unstyled">
-                                            <li><i class="bi bi-check-circle-fill"></i> Transmission: <span id="vehicleTransmission"></span></li>
-                                            <li><i class="bi bi-check-circle-fill"></i> Size: <span id="vehicleSize"></span></li>
-                                            <li><i class="bi bi-check-circle-fill"></i> Price: $<span id="vehiclePrice"></span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="p-1 d-flex flex-column">
-                                            <div>
-                                                <span class="text-warning fw-bold">Premium Features</span>
-                                                <ul class="list-unstyled mt-2 mb-1">
-                                                    <li><i class="bi bi-check-circle-fill"></i> Full cover without excess</li>
-                                                    <li><i class="bi bi-check-circle-fill"></i> No deposit required</li>
-                                                    <li><i class="bi bi-check-circle-fill"></i> Full-Full</li>
-                                                    <li><i class="bi bi-check-circle-fill"></i> Express check-in</li>
-                                                    <li><i class="bi bi-check-circle-fill"></i> Additional driver</li>
-                                                </ul>
+                                    <div class="container ">
+
+                                        <h3>Step 1</h3>
+                                        <div class="row ">
+                                            <div class="col formInfo">
+                                                <label for="picOffice" class="form-label">Pick up Office</label>
+                                                <select asp-for=PickupLocation id="picOffice" class="form-control form-select" required>
+                                                    <option selected value="">Pickup Location..</option>
+                                                    <option value="1">Alicante(ALC) </option>
+                                                    <option value="2">MuricaI nternational (RMU)</option>
+                                                    <option value="3">Alicante Bus Station</option>
+                                                    <option value="4">Alicante Train Station</option>
+                                                </select>
+                                                <span asp-validation-for="PickupLocation" class="text-danger"></span>
+                                            </div>
+                                            <div class="col formInfo">
+                                                <label for="dropLocation" class="form-label">Drop Location</label>
+                                                <select asp-for=DropLocation id="dropOffice" class="form-control form-select" required>
+                                                    <option selected value="">Drop Location..</option>
+                                                    <option value="1">Alicante(ALC) </option>
+                                                    <option value="2">MuricaI nternational (RMU)</option>
+                                                    <option value="3">Alicante Bus Station</option>
+                                                    <option value="4">Alicante Train Station</option>
+                                                </select>
+                                                <span asp-validation-for="DropLocation" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div class="row">
+                                            <div class="col formInfo">
+                                                <label class="form-label">Start time</label>
+                                                <input asp-for=StartDate class="form-control" id="startDate" asp-format="{0:dd-MM-yyyy : htt}" placeholder="16-April-2024 : 7am" required>
+                                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                                            </div>
+                                            <div class="col formInfo">
+                                                <label class="form-label">End ime</label>
+                                                <input asp-for=EndDate asp-format="{0:dd-MM-yyyy : htt}" class="form-control" id="endDate" placeholder="19-April-2024 : 7am" required>
+                                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <button type="button" class="btn btn-primary w-100 submitButton" onclick="searchVehicles()">Search Now</button>
                                             </div>
                                         </div>
                                     </div>
@@ -142,84 +85,144 @@
                             </div>
                         </div>
                     </div>
+                </section>
+            </div>
+            <!-- Step 2 -->
+            <div class="step row">
+                <div class="p-1">
+                    <button type="button" class="btn btn-secondary float-end" style="background-color:hotpink;color:black"
+                            onclick="prevStep()">
+                        Back
+                    </button>
+                </div>
+                <h3 style="color:hotpink">Step 2: Available Cars</h3>
+                <div id="availableVehicles" class="vehicle-list"></div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
+                <input asp-for="VehicleId" type="hidden" class="form-control" id="vehicleId">
+                <input asp-for="Price" type="hidden" class="form-control" id="price">
+            </div>
 
-                    <div class="col col-sm-6 mb-1 mb-sm-0">
-                        <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
-                            <div class="card-body">
-                                <h5 class="card-title text-left mt-3 pb-3">Personal Information</h5>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label">First Name</label>
-                                        <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="ex: John Smith" required>
-                                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputPassword4" class="form-label">Last Name</label>
-                                        <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith" required>
-                                        <span asp-validation-for="LastName" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputAddress" class="form-label">Email</label>
-                                        <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com" required>
-                                        <span asp-validation-for="Email" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputAddress2" class="form-label ">Phone</label>
-                                        <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678" required>
-                                        <span asp-validation-for="Phone" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputCity" class="form-label">Nationality</label>
-                                        <input type="text" asp-for=Nationality class="form-control" id="inputCity" placeholder="British" required>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Age</label>
-                                        <select asp-for=Age id="age" class="form-control form-select" required>
-                                            <option selected>Age..</option>
-                                            @for (int age = 18; age <= 100; age++)
-                                            {
-                                                <option value="@age">I am @age years old</option>
-                                            }
+            <!-- Step 3 -->
+            <div class="step">
+                <section>
+                    <div class="row container">
+                        <div class="col col-sm-6 mb-1 mb-sm-0">
+                            <div class="card p-2 mb-1 bg-body-tertiary widgetOne">
+                                <div class="card-body widgetBody">
+                                    <h3>Quote Summery</h3>
 
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Gender</label>
-                                        <select asp-for=Gender id="gender" class="form-control form-select" required>
-                                            <option selected>Gender..</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                            <option value="3">Other</option>
-                                        </select>
-                                    </div>
+                                    <p>Location: <span id="pickupLocation"></span> <i class="bi bi-arrow-right"></i> <span id="dropLocation"></span></p>
+                                    <p>From: <span id="fromDate"></span></p>
+                                    <p>To: <span id="toDate"></span> </p>
 
-                                    <div class="col-md-12" id="userAccount">
-                                        <label class="col-form-label">Do you want user account?</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r1" value="yes" checked>
-                                            <label class="form-check-label" for="r1">Yes</label>
+                                    <div class="col col-sm-12 text-center">
+                                        <img src="" id="vehicleImage" alt="Vehicle Image" class="vehicle-image" />
+                                        <h3 id="vehicleModel"></h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled">
+                                                <li><i class="bi bi-check-circle-fill"></i> Transmission: <span id="vehicleTransmission"></span></li>
+                                                <li><i class="bi bi-check-circle-fill"></i> Size: <span id="vehicleSize"></span></li>
+                                                <li><i class="bi bi-check-circle-fill"></i> Price: $<span id="vehiclePrice"></span></li>
+                                            </ul>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r2" value="no">
-                                            <label class="form-check-label" for="r2">No</label>
+                                        <div class="col-md-6">
+                                            <div class="p-1 d-flex flex-column">
+                                                <div>
+                                                    <span class="text-warning fw-bold">Premium Features</span>
+                                                    <ul class="list-unstyled mt-2 mb-1">
+                                                        <li><i class="bi bi-check-circle-fill"></i> Full cover without excess</li>
+                                                        <li><i class="bi bi-check-circle-fill"></i> No deposit required</li>
+                                                        <li><i class="bi bi-check-circle-fill"></i> Full-Full</li>
+                                                        <li><i class="bi bi-check-circle-fill"></i> Express check-in</li>
+                                                        <li><i class="bi bi-check-circle-fill"></i> Additional driver</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 text-center">
-                                    <p>
-                                        By clicking the <span class="span">Get My Estimate</span> button you agree to the terms and conditions set out below.
-                                        This is part of the contract you will receive when you collect your car. 
-                                    </p>
-                                    <button type="submit" class="btn btn-primary submitButton">Get My Estimate >></button>
+                            </div>
+                        </div>
+
+                        <div class="col col-sm-6 mb-1 mb-sm-0">
+                            <div class="card  p-1 mb-3 bg-body-tertiary quoteForm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-left mt-3 pb-3" style="color:white">Personal Information</h5>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label asp-for="FirstName" class="form-label" style="color:white">First Name</label>
+                                            <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="ex: John Smith" required>
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="LastName" class="form-label" style="color:white">Last Name</label>
+                                            <input type="text" asp-for="LastName" class="form-control" id="lastName" placeholder="ex: John Smith" required>
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="Email" class="form-label" style="color:white">Email</label>
+                                            <input type="text" asp-for="Email" class="form-control" id="email" placeholder="example@example.com" required>
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="Phone" class="form-label" style="color:white">Phone</label>
+                                            <input type="text" asp-for="Phone" class="form-control" id="phone" placeholder="+12 345 678" required>
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label asp-for="Nationality" class="form-label" style="color:white">Nationality</label>
+                                            <input type="text" asp-for=Nationality class="form-control" id="inputCity" placeholder="British" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label asp-for="Age" class="form-label" style="color:white">Age</label>
+                                            <select asp-for=Age id="age" class="form-control form-select" required>
+                                                <option selected value="">Age..</option>
+                                                @for (int age = 18; age <= 100; age++)
+                                                {
+                                                    <option value="@age">I am @age years old</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label asp-for=Gender class="form-label" style="color:white">Gender</label>
+                                            <select asp-for=Gender id="gender" class="form-control form-select" required>
+                                                <option selected>Gender..</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                                <option value="3">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-12" id="userAccount">
+                                            <label asp-for="IsUserAccountNeeded" class="col-form-label" style="color:white">Do you want user account?</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r1" value="yes" checked>
+                                                <label class="form-check-label" for="r1" style="color:white">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" asp-for="IsUserAccountNeeded" type="radio" id="r2" value="no">
+                                                <label class="form-check-label" for="r2" style="color:white">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center" style="color:white">
+                                        <p>
+                                            By clicking the <span class="span" style="color:white;font-weight:bold">Get My Estimate</span> button you agree to the terms and conditions set out below.
+                                            This is part of the contract you will receive when you collect your car. 
+                                        </p>
+                                        <button type="submit" class="btn btn-primary submitButton">Get My Estimate >></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </form>
-</div>    
+                </section>
+            </div>
+        </form>
+    </div>
 </div>
 @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
 <script src="~/lib/jquery/dist/jquery.js"></script>
