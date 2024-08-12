@@ -105,4 +105,15 @@
     .premium ul li {
         margin-bottom: 5px;
     }
+.container {
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+/* For screens with width 768px or less */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+}
