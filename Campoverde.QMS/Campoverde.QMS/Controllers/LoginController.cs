@@ -43,11 +43,11 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
                 var customer = await _dbContext.Customer.FirstOrDefaultAsync(c => c.Email == user.Email);
                 if (customer != null)
                 {
-                    TempData["FullName"] = customer.FirstName + " " + customer.LastName;
+                    HttpContext.Session.SetString("FullName", customer.FirstName + " " + customer.LastName);
                 }
                 else
                 {
-                    TempData["FullName"] = user.Email;
+                    HttpContext.Session.SetString("FullName", user.Email);
                 }
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
@@ -70,6 +70,7 @@ public class LoginController(CampoverdeDbContext dbContext) : Controller
 
     public IActionResult Logout()
     {
+        HttpContext.Session.Clear();
         HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction("Index", "Home");
     }

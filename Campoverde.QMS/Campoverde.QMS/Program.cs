@@ -6,13 +6,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login/Index";
         options.LogoutPath = "/Login/Logout";
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(1); // Set session timeout to 30 minutes
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(5); // Set session timeout to 30 minutes
         options.SlidingExpiration = true;
     });
 
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"))
     .AddPolicy("RequireUserRole", policy => policy.RequireRole("User"));
+
+// Introduce session
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true; // Make the session cookie HTTP-only
+    options.Cookie.IsEssential = true; // Make the session cookie essential
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -43,6 +50,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

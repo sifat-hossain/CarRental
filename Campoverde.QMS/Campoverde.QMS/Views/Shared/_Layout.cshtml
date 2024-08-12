@@ -70,11 +70,16 @@
                                 </li>
                             }
                             <li class="nav-item dropdown ms-auto">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:white"><i class="bi bi-person"></i> @TempData["FullName"]</a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" asp-controller="Login" asp-action="ChangePassword">Change Password</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a></li>
-                                </ul>
+                                @if (Context.Session.GetString("FullName") != null)
+                                {
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color:white">
+                                        <i class="bi bi-person"></i> @Context.Session.GetString("FullName")
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" asp-controller="Login" asp-action="ChangePassword">Change Password</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a></li>
+                                    </ul>
+                                }                                
                             </li>
                         }
                         else
